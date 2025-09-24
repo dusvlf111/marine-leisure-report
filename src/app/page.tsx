@@ -33,22 +33,22 @@ export default function Home() {
                 기상정보, 어업권 현황 등 맞춤형 안전 정보를 제공받으세요.
               </p>
               
-              <div className="flex flex-wrap justify-center gap-6 text-sm mb-8" style={{ color: '#133E87' }}>
-                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border" style={{ backgroundColor: '#CBDCEB60', borderColor: '#608BC1' }}>
-                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#608BC1' }}></span>
-                  <span>실시간 AI 안전도 분석</span>
+              <div className="flex flex-wrap justify-center gap-6 text-sm mb-8">
+                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#CBDCEB80', borderColor: '#133E87', color: '#133E87' }}>
+                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#133E87' }}></span>
+                  <span className="font-medium">실시간 AI 안전도 분석</span>
                 </div>
-                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border" style={{ backgroundColor: '#CBDCEB60', borderColor: '#608BC1' }}>
-                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#608BC1' }}></span>
-                  <span>기상정보 연동</span>
+                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#608BC180', borderColor: '#608BC1', color: '#F3F3E0' }}>
+                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#F3F3E0' }}></span>
+                  <span className="font-medium">기상정보 연동</span>
                 </div>
-                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border" style={{ backgroundColor: '#CBDCEB60', borderColor: '#608BC1' }}>
-                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#608BC1' }}></span>
-                  <span>어업권 정보 제공</span>
+                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#CBDCEB80', borderColor: '#133E87', color: '#133E87' }}>
+                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#133E87' }}></span>
+                  <span className="font-medium">어업권 정보 제공</span>
                 </div>
-                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border" style={{ backgroundColor: '#CBDCEB60', borderColor: '#608BC1' }}>
-                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#608BC1' }}></span>
-                  <span>응급연락처 안내</span>
+                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#608BC180', borderColor: '#608BC1', color: '#F3F3E0' }}>
+                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#F3F3E0' }}></span>
+                  <span className="font-medium">응급연락처 안내</span>
                 </div>
               </div>
             </div>
