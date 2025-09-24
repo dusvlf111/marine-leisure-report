@@ -31,6 +31,7 @@ export async function POST(request: NextRequest) {
           coastGuard: '국번없이 122',
           rescue: '119',
           localAuthority: '051-709-4000',
+          localPolice: '051-700-5000',
           fishingAssociation: '051-123-4567'
         },
         safetyZones: analysis.safetyZones
@@ -111,6 +112,7 @@ async function performSafetyAnalysis(data: any) {
     weatherScore,
     locationScore,
     fishingRightScore: locationInfo.fishingRights ? 70 : 100,
+    fisheryScore: locationInfo.fishingRights ? 65 : 95, // 어업권 관련 점수
     navigationScore: locationInfo.navigationRoute ? 75 : 100
   };
 

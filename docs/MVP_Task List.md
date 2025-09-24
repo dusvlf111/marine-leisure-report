@@ -2,7 +2,7 @@
 
 ## 📋 프로젝트 개요
 - **목표**: 1일 내 완성 가능한 MVP 데모 버전
-- **기술 스택**: Next.js 14, TypeScript, Tailwind CSS, Animate.css, Kakao Map API
+- **기술 스택**: Next.js 14, TypeScript, Tailwind CSS, Animate.css, OpenStreetMap (with React Leaflet)
 - **배포**: Vercel
 - **데이터**: 목데이터 기반
 
@@ -18,7 +18,7 @@
 - `src/app/page.tsx` - 메인 홈페이지 (자율신고 입력)
 - `src/app/report/[id]/page.tsx` - 신고 결과 페이지
 - `src/components/forms/ReportForm.tsx` - 핵심 신고 입력 폼
-- `src/components/map/MapView.tsx` - Kakao Map 통합 컴포넌트
+- `src/components/map/MapView.tsx` - OpenStreetMap (React Leaflet) 통합 컴포넌트
 - `src/components/safety/SafetyAnalysis.tsx` - 안전도 분석 결과 표시
 - `src/lib/data/mockData.ts` - 목데이터 정의
 - `src/lib/data/schemas.ts` - Zod 스키마 정의
@@ -69,24 +69,24 @@
     - [x] 5.6 오류 처리 및 검증 미들웨어
     - [x] 5.7 reportService 클래스 구현
 
-- [ ] 6.0 Kakao Map 통합 및 지도 시각화
-    - [ ] 6.1 Kakao Map API 설정 및 스크립트 로딩
-    - [ ] 6.2 useKakaoMap 커스텀 훅 구현
-    - [ ] 6.3 기본 MapView 컴포넌트 구현
-    - [ ] 6.4 SafetyZones 컴포넌트 (안전구역 색상별 표시)
-    - [ ] 6.5 MarkerManager 컴포넌트 (응급구조, 항구, 어촌계 마커)
-    - [ ] 6.6 지도 클릭 이벤트 처리
-    - [ ] 6.7 지도 안전구역 등장 애니메이션 적용
+- [x] 6.0 OpenStreetMap (React Leaflet) 통합 및 지도 시각화
+    - [x] 6.1 `leaflet`, `react-leaflet` 패키지 설치
+    - [x] 6.2 Leaflet CSS 글로벌 설정
+    - [x] 6.3 `MapView` 컴포넌트 (React Leaflet 기반) 재작성
+    - [x] 6.4 `DynamicMapView`를 통한 클라이언트 사이드 렌더링
+    - [x] 6.5 마커 및 안전구역(Polygon) 표시 기능 구현
+    - [x] 6.6 지도 클릭 이벤트 처리
 
-- [ ] 7.0 결과 페이지 및 안전 정보 표시
-    - [ ] 7.1 SafetyAnalysis 컴포넌트 (안전도 점수 및 상태 표시)
-    - [ ] 7.2 WeatherInfo 컴포넌트 (기상 정보 표시)
-    - [ ] 7.3 FisheryInfo 컴포넌트 (어업권 정보 안내)
-    - [ ] 7.4 NavigationInfo 컴포넌트 (항로 정보 안내)
-    - [ ] 7.5 EmergencyContacts 컴포넌트 (응급연락처)
-    - [ ] 7.6 결과 페이지 레이아웃 구현 (/report/[id])
-    - [ ] 7.7 안전도별 차별화된 애니메이션 적용
-    - [ ] 7.8 결과 표시 순차 애니메이션 구현
+
+- [x] 7.0 결과 페이지 및 안전 정보 표시
+    - [x] 7.1 SafetyAnalysis 컴포넌트 (안전도 점수 및 상태 표시)
+    - [x] 7.2 WeatherInfo 컴포넌트 (기상 정보 표시)
+    - [x] 7.3 FisheryInfo 컴포넌트 (어업권 정보 안내)
+    - [x] 7.4 NavigationInfo 컴포넌트 (항로 정보 안내)
+    - [x] 7.5 EmergencyContacts 컴포넌트 (응급연락처)
+    - [x] 7.6 결과 페이지 레이아웃 구현 (/report/[id])
+    - [x] 7.7 안전도별 차별화된 애니메이션 적용
+    - [x] 7.8 결과 표시 순차 애니메이션 구현
 
 - [ ] 8.0 테스트 코드 작성 및 품질 보증
     - [ ] 8.1 Jest 및 Testing Library 설정
@@ -134,8 +134,10 @@ npm install react-hook-form @hookform/resolvers zod
 npm install lucide-react animate.css
 npm install @tanstack/react-query
 
+npm install leaflet react-leaflet
+
 # 개발 도구
-npm install -D @types/kakao-maps-sdk
+npm install -D @types/leaflet @types/react-leaflet
 npm install -D jest @testing-library/react @testing-library/jest-dom
 npm install -D @playwright/test msw
 ```
@@ -159,7 +161,6 @@ npm install -D @playwright/test msw
 #### 1.4 환경 변수 설정
 ```bash
 # .env.local
-NEXT_PUBLIC_KAKAO_MAP_API_KEY=your_kakao_api_key_here
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 

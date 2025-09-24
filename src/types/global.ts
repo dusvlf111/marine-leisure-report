@@ -27,6 +27,7 @@ export interface SafetyAnalysisData {
   weatherScore: number;
   locationScore: number;
   fishingRightScore: number;
+  fisheryScore: number;
   navigationScore: number;
 }
 
@@ -48,6 +49,7 @@ export interface EmergencyContacts {
   coastGuard: string;
   rescue: string;
   localAuthority: string;
+  localPolice: string;
   fishingAssociation?: string;
 }
 
@@ -55,6 +57,7 @@ export interface SafetyZone {
   id: string;
   name: string;
   type: 'SAFE' | 'CAUTION' | 'DANGER' | 'FISHING' | 'NAVIGATION';
+  safetyLevel: 'HIGH' | 'MEDIUM' | 'LOW';
   coordinates: Coordinates[];
   description: string;
 }

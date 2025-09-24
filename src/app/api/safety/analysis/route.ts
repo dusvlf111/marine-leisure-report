@@ -144,6 +144,7 @@ function performQuickSafetyAnalysis(
       weatherScore,
       locationScore,
       fishingRightScore,
+      fisheryScore: fishingRightScore * 0.9, // 어업 관련 점수
       navigationScore
     }
   };

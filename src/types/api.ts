@@ -1,4 +1,4 @@
-import { SafetyAnalysisData, WeatherData, FisheryInfo, EmergencyContacts, Location, ActivityType } from './global';
+import { SafetyAnalysisData, WeatherData, FisheryInfo, EmergencyContacts, Location, ActivityType, SafetyZone } from './global';
 
 // API 공통 응답 타입
 export interface ApiResponse<T = any> {
@@ -68,14 +68,6 @@ export interface MapMarker {
   type: 'EMERGENCY' | 'PORT' | 'FISHING_ASSOCIATION';
   title: string;
   phone?: string;
-}
-
-export interface SafetyZone {
-  id: string;
-  name: string;
-  coordinates: Array<{ lat: number; lng: number }>;
-  safetyLevel: 'HIGH' | 'MEDIUM' | 'LOW';
-  description: string;
 }
 
 // 오류 응답 타입

@@ -3,10 +3,11 @@ import { mockReports } from '@/lib/data/mockData';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
-    const reportId = params.id;
+    const reportId = id;
 
     if (!reportId) {
       return NextResponse.json(

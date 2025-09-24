@@ -6,7 +6,8 @@ import {
   SafetyAnalysisData,
   SafetyStatus 
 } from '@/types/global';
-import { MapMarker, SafetyZone } from '@/types/api';
+import { MapMarker } from '@/types/api';
+import { SafetyZone } from '@/types/global';
 
 // 목 위치 데이터
 export const mockLocations: Location[] = [
@@ -44,30 +45,35 @@ export const mockWeatherData: Record<string, WeatherData> = {
     temperature: 24,
     windSpeed: 3.2,
     waveHeight: 0.5,
+    visibility: 'GOOD',
   },
   '제주도 중문해수욕장': {
     condition: 'CLOUDY',
     temperature: 22,
     windSpeed: 5.1,
     waveHeight: 0.8,
+    visibility: 'MODERATE',
   },
   '강원도 속초항': {
     condition: 'RAINY',
     temperature: 18,
     windSpeed: 8.3,
     waveHeight: 1.2,
+    visibility: 'POOR',
   },
   '인천 을왕리해수욕장': {
     condition: 'CLEAR',
     temperature: 20,
     windSpeed: 2.8,
     waveHeight: 0.3,
+    visibility: 'GOOD',
   },
   '경남 통영 한산도': {
     condition: 'STORMY',
     temperature: 19,
     windSpeed: 12.5,
     waveHeight: 2.1,
+    visibility: 'POOR',
   },
 };
 
@@ -100,26 +106,36 @@ export const mockFisheryInfo: Record<string, FisheryInfo> = {
 export const mockEmergencyContacts: Record<string, EmergencyContacts> = {
   '부산 해운대해수욕장': {
     coastGuard: '051-760-2000',
+    rescue: '119',
+    localAuthority: '051-888-1000',
     localPolice: '051-749-3112',
     fishingAssociation: '051-741-2345',
   },
   '제주도 중문해수욕장': {
     coastGuard: '064-800-8000',
+    rescue: '119',
+    localAuthority: '064-710-2000',
     localPolice: '064-760-5000',
     fishingAssociation: '064-752-1004',
   },
   '강원도 속초항': {
     coastGuard: '033-630-6119',
+    rescue: '119',
+    localAuthority: '033-639-2000',
     localPolice: '033-639-2112',
     fishingAssociation: '033-639-2765',
   },
   '인천 을왕리해수욕장': {
     coastGuard: '032-889-6119',
+    rescue: '119',
+    localAuthority: '032-899-2000',
     localPolice: '032-899-3400',
     fishingAssociation: '032-899-3423',
   },
   '경남 통영 한산도': {
     coastGuard: '055-640-4119',
+    rescue: '119',
+    localAuthority: '055-650-1000',
     localPolice: '055-650-5000',
     fishingAssociation: '055-650-4000',
   },
@@ -154,6 +170,7 @@ export const mockSafetyZones: SafetyZone[] = [
   {
     id: 'zone-1',
     name: '해운대 안전구역',
+    type: 'SAFE',
     coordinates: [
       { lat: 35.1585, lng: 129.1590 },
       { lat: 35.1605, lng: 129.1590 },
@@ -166,6 +183,7 @@ export const mockSafetyZones: SafetyZone[] = [
   {
     id: 'zone-2',
     name: '항로 주의구역',
+    type: 'CAUTION',
     coordinates: [
       { lat: 35.1570, lng: 129.1630 },
       { lat: 35.1590, lng: 129.1630 },
@@ -251,11 +269,11 @@ export function calculateSafetyScore(
   
   return {
     overallScore: Math.round(overallScore),
-    navigationScore: Math.round(navigationScore),
     weatherScore: Math.round(weatherScore),
+    locationScore: Math.round(overallScore * 0.9), // 임시 계산
+    fishingRightScore: Math.round(weatherScore * 0.8), // 임시 계산
     fisheryScore: Math.round(fisheryScore),
-    status,
-    message,
+    navigationScore: Math.round(navigationScore),
   };
 }
 
@@ -289,6 +307,7 @@ export const mockReports: Array<{
       weatherScore: 90,
       locationScore: 95,
       fishingRightScore: 100,
+      fisheryScore: 95,
       navigationScore: 100
     },
     weather: {
@@ -307,6 +326,7 @@ export const mockReports: Array<{
       coastGuard: '국번없이 122',
       rescue: '119',
       localAuthority: '051-709-4000',
+      localPolice: '051-700-5000',
       fishingAssociation: '051-123-4567'
     },
     safetyZones: mockSafetyZones.slice(0, 3),
