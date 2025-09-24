@@ -39,11 +39,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
   return (
     <div className="space-y-4">
-      <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-        <h3 className="font-semibold text-orange-800 mb-2">
+      <div className="backdrop-blur-md border rounded-lg p-4 hover-lift shadow-lg" style={{ backgroundColor: '#CBDCEB60', borderColor: '#608BC1' }}>
+        <h3 className="font-semibold mb-2" style={{ color: '#133E87' }}>
           📞 비상연락처 정보
         </h3>
-        <p className="text-sm text-orange-700">
+        <p className="text-sm" style={{ color: '#608BC1' }}>
           응급상황 발생 시 신속한 구조 작업을 위해 정확한 연락처를 입력해주세요.
           입력하신 개인정보는 안전 목적으로만 사용되며 보안이 보장됩니다.
         </p>

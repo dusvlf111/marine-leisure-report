@@ -118,12 +118,12 @@ export const ReportForm: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* 헤더 */}
-      <Card className="animate__animated animate__fadeInDown">
+      <Card className="animate__animated animate__fadeInDown hover-lift">
         <CardHeader className="text-center">
-          <CardTitle level={1} className="text-blue-800">
+          <CardTitle level={1} style={{ color: '#133E87' }}>
             🌊 해양레저스포츠 자율신고
           </CardTitle>
-          <p className="text-gray-600 mt-2">
+          <p className="mt-2" style={{ color: '#608BC1' }}>
             안전한 해양활동을 위해 사전 신고를 통해 맞춤형 안전 정보를 받으세요
           </p>
         </CardHeader>
@@ -142,9 +142,9 @@ export const ReportForm: React.FC = () => {
       {/* 메인 폼 */}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* 위치 선택 */}
-        <Card className="animate__animated animate__slideInUp">
+        <Card className="animate__animated animate__slideInUp hover-lift">
           <CardHeader>
-            <CardTitle level={3}>📍 활동 위치</CardTitle>
+            <CardTitle level={3} style={{ color: '#133E87' }}>📍 활동 위치</CardTitle>
           </CardHeader>
           <CardContent>
             <LocationSelector
@@ -157,9 +157,9 @@ export const ReportForm: React.FC = () => {
         </Card>
 
         {/* 활동 종목 선택 */}
-        <Card className="animate__animated animate__slideInUp animate-delay-500ms">
+        <Card className="animate__animated animate__slideInUp animate-delay-500ms hover-lift">
           <CardHeader>
-            <CardTitle level={3}>🏄‍♂️ 활동 종목</CardTitle>
+            <CardTitle level={3} style={{ color: '#133E87' }}>🏄‍♂️ 활동 종목</CardTitle>
           </CardHeader>
           <CardContent>
             <ActivitySelector
@@ -172,9 +172,9 @@ export const ReportForm: React.FC = () => {
         </Card>
 
         {/* 활동 세부 정보 */}
-        <Card className="animate__animated animate__slideInUp animate-delay-1s">
+        <Card className="animate__animated animate__slideInUp animate-delay-1s hover-lift">
           <CardHeader>
-            <CardTitle level={3}>⏱️ 활동 세부 정보</CardTitle>
+            <CardTitle level={3} style={{ color: '#133E87' }}>⏱️ 활동 세부 정보</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -216,9 +216,9 @@ export const ReportForm: React.FC = () => {
         </Card>
 
         {/* 연락처 정보 */}
-        <Card className="animate__animated animate__slideInUp animate-delay-2s">
+        <Card className="animate__animated animate__slideInUp animate-delay-2s hover-lift">
           <CardHeader>
-            <CardTitle level={3}>📞 연락처 정보</CardTitle>
+            <CardTitle level={3} style={{ color: '#133E87' }}>📞 연락처 정보</CardTitle>
           </CardHeader>
           <CardContent>
             <ContactForm
@@ -242,12 +242,12 @@ export const ReportForm: React.FC = () => {
             variant="primary"
             size="lg"
             loading={isSubmitting}
-            className="w-full"
+            className="w-full hover-lift font-bold"
           >
             {isSubmitting ? 'AI 안전도 분석 중...' : '🚀 자율신고 접수하기'}
           </Button>
           
-          <p className="text-center text-sm text-gray-500 mt-3">
+          <p className="text-center text-sm mt-3" style={{ color: '#608BC1' }}>
             신고 접수 후 즉시 AI 기반 안전도 분석 결과를 확인할 수 있습니다.
           </p>
         </div>

@@ -31,26 +31,26 @@ export const Alert: React.FC<AlertProps> = ({
   
   const typeConfig = {
     success: {
-      containerClasses: 'bg-green-50 border-green-200 text-green-800',
-      iconClasses: 'text-green-400',
+      containerClasses: 'bg-green-500/30 backdrop-blur-md border-green-300/50 text-green-100 neon-green border',
+      iconClasses: 'text-green-300 drop-shadow-lg',
       Icon: CheckCircle,
       animationClass: animate ? 'success-message' : '',
     },
     warning: {
-      containerClasses: 'bg-yellow-50 border-yellow-200 text-yellow-800',
-      iconClasses: 'text-yellow-400',
+      containerClasses: 'bg-yellow-500/30 backdrop-blur-md border-yellow-300/50 text-yellow-100 border',
+      iconClasses: 'text-yellow-300 drop-shadow-lg',
       Icon: AlertCircle,
       animationClass: animate ? 'safety-caution' : '',
     },
     error: {
-      containerClasses: 'bg-red-50 border-red-200 text-red-800',
-      iconClasses: 'text-red-400',
+      containerClasses: 'bg-red-500/30 backdrop-blur-md border-red-300/50 text-red-100 border shadow-red-500/25',
+      iconClasses: 'text-red-300 drop-shadow-lg',
       Icon: XCircle,
       animationClass: animate ? 'safety-denied' : '',
     },
     info: {
-      containerClasses: 'bg-blue-50 border-blue-200 text-blue-800',
-      iconClasses: 'text-blue-400',
+      containerClasses: 'bg-blue-500/30 backdrop-blur-md border-blue-300/50 text-blue-100 neon-blue border',
+      iconClasses: 'text-blue-300 drop-shadow-lg',
       Icon: Info,
       animationClass: animate ? 'safety-approved' : '',
     },

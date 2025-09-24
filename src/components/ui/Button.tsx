@@ -17,14 +17,14 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm border-0 shadow-lg hover-lift';
   
   const variantClasses = {
-    primary: 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500',
-    secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-900 focus:ring-gray-500',
-    danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500',
-    success: 'bg-green-600 hover:bg-green-700 text-white focus:ring-green-500',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500',
+    primary: 'backdrop-blur-md shadow-lg border',
+    secondary: 'backdrop-blur-md shadow-md border',
+    danger: 'bg-gradient-to-r from-red-600 via-red-500 to-pink-500 hover:from-red-500 hover:via-pink-500 hover:to-red-600 text-white focus:ring-red-500 shadow-red-500/25',
+    success: 'bg-gradient-to-r from-green-600 via-green-500 to-emerald-500 hover:from-green-500 hover:via-emerald-500 hover:to-green-600 text-white focus:ring-green-500',
+    outline: 'backdrop-blur-md border-2 shadow-md',
   };
   
   const sizeClasses = {
@@ -33,6 +33,35 @@ export const Button: React.FC<ButtonProps> = ({
     lg: 'px-6 py-3 text-lg',
   };
   
+  const getButtonStyle = () => {
+    switch (variant) {
+      case 'primary':
+        return {
+          backgroundColor: '#133E87',
+          borderColor: '#608BC1',
+          color: '#F3F3E0'
+        };
+      case 'secondary':
+        return {
+          backgroundColor: '#CBDCEB80',
+          borderColor: '#608BC1',
+          color: '#133E87'
+        };
+      case 'outline':
+        return {
+          backgroundColor: 'transparent',
+          borderColor: '#608BC1',
+          color: '#133E87'
+        };
+      default:
+        return {
+          backgroundColor: '#133E87',
+          borderColor: '#608BC1',
+          color: '#F3F3E0'
+        };
+    }
+  };
+
   return (
     <button
       className={cn(
@@ -41,6 +70,7 @@ export const Button: React.FC<ButtonProps> = ({
         sizeClasses[size],
         className
       )}
+      style={getButtonStyle()}
       disabled={disabled || loading}
       {...props}
     >

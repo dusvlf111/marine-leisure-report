@@ -77,7 +77,7 @@ export const LocationSelector = forwardRef<HTMLSelectElement, LocationSelectorPr
                 title: loc.name,
                 content: `<div class="p-2"><strong>${loc.name}</strong><br/>클릭하여 선택</div>`
               }))}
-              className="border rounded-lg"
+              className="glass-card border border-white/30 rounded-lg hover-lift shadow-lg backdrop-blur-md"
             />
             <p className="text-xs text-gray-500 mt-2">
               💡 지도의 마커를 클릭하거나 원하는 위치를 클릭하세요
