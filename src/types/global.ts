@@ -7,6 +7,8 @@ export interface Coordinates {
 export interface Location {
   name: string;
   coordinates: Coordinates;
+  safetyLevel?: 'HIGH' | 'MEDIUM' | 'LOW';
+  fishingRights?: boolean;
   navigationRoute?: boolean;
 }
 
@@ -22,18 +24,18 @@ export type SafetyStatus = 'APPROVED' | 'CAUTION' | 'DENIED';
 
 export interface SafetyAnalysisData {
   overallScore: number;
-  navigationScore: number;
   weatherScore: number;
-  fisheryScore: number;
-  status: SafetyStatus;
-  message: string;
+  locationScore: number;
+  fishingRightScore: number;
+  navigationScore: number;
 }
 
 export interface WeatherData {
   condition: 'CLEAR' | 'CLOUDY' | 'RAINY' | 'STORMY';
-  temperature: number;
   windSpeed: number;
   waveHeight: number;
+  visibility: 'GOOD' | 'MODERATE' | 'POOR';
+  temperature: number;
 }
 
 export interface FisheryInfo {
@@ -44,6 +46,15 @@ export interface FisheryInfo {
 
 export interface EmergencyContacts {
   coastGuard: string;
-  localPolice: string;
+  rescue: string;
+  localAuthority: string;
   fishingAssociation?: string;
+}
+
+export interface SafetyZone {
+  id: string;
+  name: string;
+  type: 'SAFE' | 'CAUTION' | 'DANGER' | 'FISHING' | 'NAVIGATION';
+  coordinates: Coordinates[];
+  description: string;
 }

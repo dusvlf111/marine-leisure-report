@@ -23,10 +23,17 @@ export interface ReportRequest {
 
 // 신고 응답 타입
 export interface ReportResponse {
-  reportId: string;
-  status: 'SUBMITTED' | 'PROCESSING' | 'ANALYZED';
-  submittedAt: string;
-  analysisData?: SafetyAnalysisData;
+  success: boolean;
+  data: {
+    reportId: string;
+    status: import('./global').SafetyStatus;
+    analysis: SafetyAnalysisData;
+    weather: WeatherData;
+    recommendations: string[];
+    emergencyContacts: EmergencyContacts;
+    safetyZones: import('./global').SafetyZone[];
+  };
+  error?: string;
 }
 
 // 신고 상세 조회 응답 타입

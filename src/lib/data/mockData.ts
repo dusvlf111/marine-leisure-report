@@ -258,3 +258,69 @@ export function calculateSafetyScore(
     message,
   };
 }
+
+// 목 신고 데이터 (시연용)
+export const mockReports: Array<{
+  reportId: string;
+  status: SafetyStatus;
+  analysis: SafetyAnalysisData;
+  weather: WeatherData;
+  recommendations: string[];
+  emergencyContacts: EmergencyContacts;
+  safetyZones: SafetyZone[];
+  submittedAt: string;
+  location: Location;
+  activity: {
+    type: string;
+    startTime: string;
+    endTime: string;
+    participants: number;
+  };
+  contact: {
+    name: string;
+    phone: string;
+  };
+}> = [
+  {
+    reportId: 'DEMO-001',
+    status: 'APPROVED',
+    analysis: {
+      overallScore: 85,
+      weatherScore: 90,
+      locationScore: 95,
+      fishingRightScore: 100,
+      navigationScore: 100
+    },
+    weather: {
+      condition: 'CLEAR',
+      windSpeed: 3.2,
+      waveHeight: 0.5,
+      visibility: 'GOOD',
+      temperature: 24
+    },
+    recommendations: [
+      '✅ 안전한 활동 조건입니다. 즐거운 해양레저를 즐기세요!',
+      '🦺 구명조끼 착용을 필수로 하세요.',
+      '📱 비상연락망을 미리 확인하세요.'
+    ],
+    emergencyContacts: {
+      coastGuard: '국번없이 122',
+      rescue: '119',
+      localAuthority: '051-709-4000',
+      fishingAssociation: '051-123-4567'
+    },
+    safetyZones: mockSafetyZones.slice(0, 3),
+    submittedAt: '2025-01-15T09:30:00Z',
+    location: mockLocations[0],
+    activity: {
+      type: '패들보드',
+      startTime: '10:00',
+      endTime: '12:00',
+      participants: 2
+    },
+    contact: {
+      name: '김해양',
+      phone: '010-1234-5678'
+    }
+  }
+];

@@ -42,32 +42,32 @@
     - [x] 2.4 목데이터 구조 설계 및 구현
     - [x] 2.5 유틸리티 함수 작성 (validators, formatters)
 
-- [ ] 3.0 기본 UI 컴포넌트 라이브러리 구축
-    - [ ] 3.1 Button 컴포넌트 (variant, size, loading 상태 포함)
-    - [ ] 3.2 Input 컴포넌트 (오류 애니메이션 포함)
-    - [ ] 3.3 Select 컴포넌트
-    - [ ] 3.4 Card 컴포넌트
-    - [ ] 3.5 Loading 컴포넌트 (스피너 애니메이션)
-    - [ ] 3.6 Alert 컴포넌트 (성공/경고/오류별 애니메이션)
-    - [ ] 3.7 레이아웃 컴포넌트 (Header, Footer, Container)
+- [x] 3.0 기본 UI 컴포넌트 라이브러리 구축
+    - [x] 3.1 Button 컴포넌트 (variant, size, loading 상태 포함)
+    - [x] 3.2 Input 컴포넌트 (오류 애니메이션 포함)
+    - [x] 3.3 Select 컴포넌트
+    - [x] 3.4 Card 컴포넌트
+    - [x] 3.5 Loading 컴포넌트 (스피너 애니메이션)
+    - [x] 3.6 Alert 컴포넌트 (성공/경고/오류별 애니메이션)
+    - [x] 3.7 레이아웃 컴포넌트 (Header, Footer, Container)
 
-- [ ] 4.0 자율신고 입력 시스템 구현
-    - [ ] 4.1 LocationSelector 컴포넌트 (드롭다운 + 지도 연동)
-    - [ ] 4.2 ActivitySelector 컴포넌트 (스포츠 종목 선택)
-    - [ ] 4.3 ContactForm 컴포넌트 (이름, 연락처 입력)
-    - [ ] 4.4 ReportForm 메인 컴포넌트 (React Hook Form + Zod)
-    - [ ] 4.5 폼 검증 오류 시 애니메이션 적용
-    - [ ] 4.6 성공 제출 시 애니메이션 및 리다이렉션
-    - [ ] 4.7 홈페이지 구현 및 폼 통합
+- [x] 4.0 자율신고 입력 시스템 구현
+    - [x] 4.1 LocationSelector 컴포넌트 (드롭다운 + 지도 연동)
+    - [x] 4.2 ActivitySelector 컴포넌트 (스포츠 종목 선택)
+    - [x] 4.3 ContactForm 컴포넌트 (이름, 연락처 입력)
+    - [x] 4.4 ReportForm 메인 컴포넌트 (React Hook Form + Zod)
+    - [x] 4.5 폼 검증 오류 시 애니메이션 적용
+    - [x] 4.6 성공 제출 시 애니메이션 및 리다이렉션
+    - [x] 4.7 홈페이지 구현 및 폼 통합
 
-- [ ] 5.0 API 라우트 및 비즈니스 로직 구현
-    - [ ] 5.1 신고 접수 API (POST /api/report/submit)
-    - [ ] 5.2 AI 분석 로직 구현 (규칙 기반 안전도 계산)
-    - [ ] 5.3 목데이터 기반 응답 시스템
-    - [ ] 5.4 신고 조회 API (GET /api/report/[id])
-    - [ ] 5.5 안전도 분석 API (GET /api/safety/analysis)
-    - [ ] 5.6 오류 처리 및 검증 미들웨어
-    - [ ] 5.7 reportService 클래스 구현
+- [x] 5.0 API 라우트 및 비즈니스 로직 구현
+    - [x] 5.1 신고 접수 API (POST /api/report/submit)
+    - [x] 5.2 AI 분석 로직 구현 (규칙 기반 안전도 계산)
+    - [x] 5.3 목데이터 기반 응답 시스템
+    - [x] 5.4 신고 조회 API (GET /api/report/[id])
+    - [x] 5.5 안전도 분석 API (GET /api/safety/analysis)
+    - [x] 5.6 오류 처리 및 검증 미들웨어
+    - [x] 5.7 reportService 클래스 구현
 
 - [ ] 6.0 Kakao Map 통합 및 지도 시각화
     - [ ] 6.1 Kakao Map API 설정 및 스크립트 로딩
