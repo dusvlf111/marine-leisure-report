@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     const weatherCondition = getCurrentWeatherSimulation();
     
     // 안전도 분석 수행
-    const analysis = performQuickSafetyAnalysis(locationInfo, activityType, weatherCondition);
+    const analysis = performQuickSafetyAnalysis(locationInfo as unknown as Record<string, unknown>, activityType, weatherCondition);
     
     // 주변 안전구역 정보
     const nearbyZones = mockSafetyZones.filter(zone => 
@@ -103,7 +103,7 @@ function getCurrentWeatherSimulation(): WeatherData {
 
 // 빠른 안전도 분석
 function performQuickSafetyAnalysis(
-  locationInfo: any,
+  locationInfo: Record<string, unknown>,
   activityType: string,
   weather: WeatherData
 ): { status: SafetyStatus; score: SafetyAnalysisData } {

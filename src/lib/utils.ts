@@ -64,12 +64,18 @@ export function formatPhoneNumber(phone: string): string {
 }
 
 // 좌표 검증
-export function validateCoordinates(coordinates: { lat: number; lng: number } | null | undefined): boolean {
-  if (!coordinates) {
+export function validateCoordinates(coordinates: unknown): boolean {
+  if (!coordinates || typeof coordinates !== 'object') {
     return false;
   }
   
-  const { lat, lng } = coordinates;
+  const coord = coordinates as Record<string, unknown>;
+  
+  if (!('lat' in coord) || !('lng' in coord)) {
+    return false;
+  }
+  
+  const { lat, lng } = coord;
   
   if (typeof lat !== 'number' || typeof lng !== 'number') {
     return false;

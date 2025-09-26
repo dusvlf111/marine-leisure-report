@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
+import type { Coordinates } from '@/types/global';
 
 // 단순한 로딩 컴포넌트
 const MapLoading = () => (
@@ -17,7 +18,7 @@ const MapLoading = () => (
 );
 
 // 단순한 에러 폴백 컴포넌트
-const MapError = (props: any) => (
+const MapError = (props: { onMapClick?: (coordinates: Coordinates) => void }) => (
   <div 
     style={{ height: '400px' }} 
     className="flex items-center justify-center bg-red-50 rounded-lg border-2 border-red-200"
@@ -48,7 +49,7 @@ const MapViewComponent = dynamic(
 );
 
 // 최종 DynamicMapView
-const DynamicMapView = (props: any) => {
+const DynamicMapView = (props: Record<string, unknown>) => {
   return (
     <div className="w-full">
       <Suspense fallback={<MapLoading />}>

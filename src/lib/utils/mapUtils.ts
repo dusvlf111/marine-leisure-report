@@ -28,17 +28,55 @@ export function calculateDistance(coord1: Coordinates, coord2: Coordinates): num
  * @param coord 검증할 좌표
  * @returns 유효한 좌표인지 여부
  */
-export function validateCoordinates(coord: Coordinates): boolean {
+export function validateCoordinates(coord: unknown): coord is Coordinates {
+  if (!coord || typeof coord !== 'object') {
+    return false;
+  }
+  
+  const c = coord as Record<string, unknown>;
+  
   return (
-    typeof coord.lat === 'number' &&
-    typeof coord.lng === 'number' &&
-    coord.lat >= -90 &&
-    coord.lat <= 90 &&
-    coord.lng >= -180 &&
-    coord.lng <= 180 &&
-    !isNaN(coord.lat) &&
-    !isNaN(coord.lng)
+    typeof c.lat === 'number' &&
+    typeof c.lng === 'number' &&
+    c.lat >= -90 &&
+    c.lat <= 90 &&
+    c.lng >= -180 &&
+    c.lng <= 180 &&
+    !isNaN(c.lat) &&
+    !isNaN(c.lng) &&
+    isFinite(c.lat) &&
+    isFinite(c.lng)
   );
+}
+
+/**
+ * 좌표를 안전하게 정규화합니다.
+ * 
+ * @param coord 정규화할 좌표
+ * @returns 정규화된 좌표 또는 null
+ */
+export function normalizeCoordinates(coord: unknown): Coordinates | null {
+  if (!validateCoordinates(coord)) {
+    return null;
+  }
+  
+  const { lat, lng } = coord;
+  
+  // 위도를 -90 ~ 90 범위로 제한
+  const normalizedLat = Math.max(-90, Math.min(90, lat));
+  
+  // 경도를 -180 ~ 180 범위로 정규화
+  let normalizedLng = lng % 360;
+  if (normalizedLng > 180) {
+    normalizedLng -= 360;
+  } else if (normalizedLng < -180) {
+    normalizedLng += 360;
+  }
+  
+  return {
+    lat: normalizedLat,
+    lng: normalizedLng
+  };
 }
 
 /**

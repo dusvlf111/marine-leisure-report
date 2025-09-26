@@ -1,5 +1,7 @@
+import type { ReportFormData } from './data/schemas';
+
 // API 함수들
-export const submitReport = async (reportData: any) => {
+export const submitReport = async (reportData: ReportFormData) => {
   const response = await fetch('/api/report-submit', {
     method: 'POST',
     headers: {

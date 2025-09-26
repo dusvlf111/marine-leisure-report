@@ -13,15 +13,18 @@ import { mockReports } from '@/lib/data/mockData';
 import Link from 'next/link';
 
 interface ReportPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function ReportPage({ params }: ReportPageProps) {
+export default async function ReportPage({ params }: ReportPageProps) {
+  // params를 await해서 id 추출
+  const { id } = await params;
+  
   // 실제 구현에서는 API에서 데이터를 가져와야 함
   // 현재는 mockReports에서 첫 번째 데이터를 사용
-  const report = mockReports[0]; // 실제로는 params.id로 조회
+  const report = mockReports[0]; // 실제로는 id로 조회
   
   if (!report) {
     notFound();

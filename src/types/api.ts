@@ -1,7 +1,7 @@
-import { SafetyAnalysisData, WeatherData, FisheryInfo, EmergencyContacts, Location, ActivityType, SafetyZone } from './global';
+import { SafetyAnalysisData, WeatherData, FisheryInfo, EmergencyContacts, Location, ActivityType } from './global';
 
 // API 공통 응답 타입
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;
@@ -75,5 +75,5 @@ export interface ErrorResponse {
   success: false;
   error: string;
   code?: string;
-  details?: any;
+  details?: unknown;
 }

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button';
 import DynamicMapView from '@/components/map/DynamicMapView';
 import { mockLocations } from '@/lib/data/mockData';
 import { Location, Coordinates } from '@/types/global';
-import { findNearestLocation } from '@/lib/utils/mapUtils';
+import { findNearestLocation, normalizeCoordinates } from '@/lib/utils/mapUtils';
 
 interface LocationSelectorProps {
   value?: Location | null;
@@ -27,12 +27,25 @@ export const LocationSelector = forwardRef<HTMLSelectElement, LocationSelectorPr
       onChange(selectedLocation || null);
     };
 
-    const handleMapClick = (coordinates: Coordinates) => {
-      // 클릭된 좌표와 가장 가까운 위치 찾기 (10km 이내)
-      const nearestLocation = findNearestLocation(coordinates, mockLocations, 10000);
-      if (nearestLocation) {
-        onChange(nearestLocation);
-        setShowMap(false);
+    const handleMapClick = (coordinates: unknown) => {
+      try {
+        // 좌표를 안전하게 정규화
+        const normalizedCoords = normalizeCoordinates(coordinates);
+        if (!normalizedCoords) {
+          console.warn('Invalid coordinates received:', coordinates);
+          return;
+        }
+
+        // 클릭된 좌표와 가장 가까운 위치 찾기 (10km 이내)
+        const nearestLocation = findNearestLocation(normalizedCoords, mockLocations, 10000);
+        if (nearestLocation) {
+          onChange(nearestLocation);
+          setShowMap(false);
+        } else {
+          console.info('No location found within 10km of clicked coordinates');
+        }
+      } catch (error) {
+        console.error('Error handling map click:', error);
       }
     };
 

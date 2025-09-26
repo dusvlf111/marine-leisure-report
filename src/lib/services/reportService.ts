@@ -43,7 +43,7 @@ export class ReportService {
   /**
    * 신고 상세 조회 API 호출 (향후 구현 예정)
    */
-  static async getReportDetail(reportId: string): Promise<any> {
+  static async getReportDetail(reportId: string): Promise<Record<string, unknown>> {
     try {
       const response = await fetch(`${this.BASE_URL}/api/report/${reportId}`);
       
@@ -61,7 +61,7 @@ export class ReportService {
   /**
    * 안전도 분석만 별도 조회 (향후 구현 예정)  
    */
-  static async getSafetyAnalysis(location: any, activityType: string): Promise<any> {
+  static async getSafetyAnalysis(location: Record<string, unknown>, activityType: string): Promise<Record<string, unknown>> {
     try {
       const response = await fetch(`${this.BASE_URL}/api/safety/analysis`, {
         method: 'POST',
@@ -85,7 +85,7 @@ export class ReportService {
   /**
    * 현재 기상 정보 조회 (향후 구현 예정)
    */
-  static async getCurrentWeather(coordinates: { lat: number; lng: number }): Promise<any> {
+  static async getCurrentWeather(coordinates: { lat: number; lng: number }): Promise<Record<string, unknown>> {
     try {
       const response = await fetch(
         `${this.BASE_URL}/api/weather?lat=${coordinates.lat}&lng=${coordinates.lng}`

@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { colors } from '@/lib/design/colors';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger' | 'success' | 'outline';
@@ -37,27 +38,27 @@ export const Button: React.FC<ButtonProps> = ({
     switch (variant) {
       case 'primary':
         return {
-          backgroundColor: '#133E87',
-          borderColor: '#608BC1',
-          color: '#F3F3E0'
+          backgroundColor: colors.primary.dark,
+          borderColor: colors.primary.medium,
+          color: colors.text.light
         };
       case 'secondary':
         return {
-          backgroundColor: '#CBDCEB80',
-          borderColor: '#608BC1',
-          color: '#133E87'
+          backgroundColor: colors.transparent.accent,
+          borderColor: colors.primary.medium,
+          color: colors.text.primary
         };
       case 'outline':
         return {
           backgroundColor: 'transparent',
-          borderColor: '#608BC1',
-          color: '#133E87'
+          borderColor: colors.primary.medium,
+          color: colors.text.primary
         };
       default:
         return {
-          backgroundColor: '#133E87',
-          borderColor: '#608BC1',
-          color: '#F3F3E0'
+          backgroundColor: colors.primary.dark,
+          borderColor: colors.primary.medium,
+          color: colors.text.light
         };
     }
   };

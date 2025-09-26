@@ -5,7 +5,7 @@ declare namespace jest {
   interface Matchers<R> {
     toBeInTheDocument(): R;
     toBeDisabled(): R;
-    toHaveValue(value: any): R;
+    toHaveValue(value: unknown): R;
     toHaveClass(className: string): R;
     toBeVisible(): R;
   }

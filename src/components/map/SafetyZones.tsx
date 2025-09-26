@@ -23,14 +23,27 @@ export const SafetyZones: React.FC<SafetyZonesProps> = ({
   showLegend = true,
   level = 5
 }) => {
-  const handleMapClick = (coordinates: Coordinates) => {
-    // 클릭된 좌표가 어떤 안전구역에 속하는지 확인
-    const clickedZone = safetyZones.find(zone => 
-      isPointInPolygon(coordinates, zone.coordinates)
-    );
-    
-    if (clickedZone && onZoneClick) {
-      onZoneClick(clickedZone);
+  const handleMapClick = (coordinates: unknown) => {
+    try {
+      // 좌표 유효성 검사
+      if (typeof coordinates === 'object' && coordinates !== null &&
+          'lat' in coordinates && 'lng' in coordinates &&
+          typeof (coordinates as Record<string, unknown>).lat === 'number' &&
+          typeof (coordinates as Record<string, unknown>).lng === 'number') {
+        
+        const validCoords = coordinates as Coordinates;
+        
+        // 클릭된 좌표가 어떤 안전구역에 속하는지 확인
+        const clickedZone = safetyZones.find(zone => 
+          isPointInPolygon(validCoords, zone.coordinates)
+        );
+        
+        if (clickedZone && onZoneClick) {
+          onZoneClick(clickedZone);
+        }
+      }
+    } catch (error) {
+      console.error('Error handling safety zone click:', error);
     }
   };
 

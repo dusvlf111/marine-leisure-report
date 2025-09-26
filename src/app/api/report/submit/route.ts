@@ -3,7 +3,7 @@ import { reportSchema } from '@/lib/data/schemas';
 import { generateReportId } from '@/lib/utils';
 import { mockLocations, mockSafetyZones } from '@/lib/data/mockData';
 import type { ReportResponse } from '@/types/api';
-import type { SafetyStatus, SafetyAnalysisData, WeatherData, SafetyZone, ActivityType } from '@/types/global';
+import type { SafetyStatus, SafetyAnalysisData, WeatherData, ActivityType, Location } from '@/types/global';
 import { calculateDistance } from '@/lib/utils/mapUtils';
 
 export async function POST(request: NextRequest) {
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
         { 
           success: false, 
           error: '입력 데이터가 올바르지 않습니다.',
-          details: (error as any).errors
+          details: (error as unknown as { errors: unknown }).errors
         },
         { status: 400 }
       );
@@ -73,22 +73,24 @@ export async function POST(request: NextRequest) {
 }
 
 // AI 안전도 분석 로직 (규칙 기반 시뮬레이션)
-async function performSafetyAnalysis(data: any) {
+async function performSafetyAnalysis(data: Record<string, unknown>) {
   // 위치 기반 안전도 계산
+  const location = data.location as Location;
   const locationInfo = mockLocations.find(loc => 
-    loc.name === data.location.name || 
-    (Math.abs(loc.coordinates.lat - data.location.coordinates.lat) < 0.01 &&
-     Math.abs(loc.coordinates.lng - data.location.coordinates.lng) < 0.01)
+    loc.name === location.name || 
+    (Math.abs(loc.coordinates.lat - location.coordinates.lat) < 0.01 &&
+     Math.abs(loc.coordinates.lng - location.coordinates.lng) < 0.01)
   ) || mockLocations[0];
 
   // 기상 조건 시뮬레이션 (현재 시간 기반)
   const weatherCondition = getWeatherSimulation();
   
   // 활동별 위험도 계산
-  const activityRisk = getActivityRiskScore(data.activity.type, data.activity.participants);
+  const activity = data.activity as { type: ActivityType; participants: number; startTime: string; endTime: string };
+  const activityRisk = getActivityRiskScore(activity.type, activity.participants);
   
   // 시간대별 위험도 (야간 활동 등)
-  const timeRisk = getTimeRiskScore(data.activity.startTime, data.activity.endTime);
+  const timeRisk = getTimeRiskScore(activity.startTime, activity.endTime);
   
   // 종합 안전도 점수 계산 (0-100점)
   const locationScore = getLocationSafetyScore(locationInfo.safetyLevel);
@@ -118,13 +120,13 @@ async function performSafetyAnalysis(data: any) {
   };
 
   // 추천 사항 생성
-  const recommendations = generateRecommendations(status, analysisData, weatherCondition, locationInfo);
+  const recommendations = generateRecommendations(status, analysisData, weatherCondition, locationInfo as unknown as Record<string, unknown>);
 
   // 안전구역 정보 (해당 지역 주변)
   const safetyZones = mockSafetyZones.filter(zone => 
     calculateDistance(
       zone.coordinates[0], 
-      data.location.coordinates
+      location.coordinates
     ) < 10000 // 10km 이내 (미터 단위)
   );
 
@@ -227,7 +229,7 @@ function generateRecommendations(
   status: SafetyStatus, 
   analysis: SafetyAnalysisData, 
   weather: WeatherData,
-  locationInfo: any
+  locationInfo: Record<string, unknown>
 ): string[] {
   const recommendations: string[] = [];
 

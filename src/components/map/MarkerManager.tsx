@@ -45,14 +45,27 @@ export const MarkerManager: React.FC<MarkerManagerProps> = ({
     }));
   }, [markers, showMarkerInfo]);
 
-  const handleMapClick = (coordinates: Coordinates) => {
-    // 클릭된 위치 근처의 마커 찾기
-    const nearbyMarker = markers.find(marker => 
-      calculateDistance(coordinates, marker.position) < 100 // 100m 이내
-    );
-    
-    if (nearbyMarker && onMarkerClick) {
-      onMarkerClick(nearbyMarker);
+  const handleMapClick = (coordinates: unknown) => {
+    try {
+      // 좌표 유효성 검사
+      if (typeof coordinates === 'object' && coordinates !== null &&
+          'lat' in coordinates && 'lng' in coordinates &&
+          typeof (coordinates as Record<string, unknown>).lat === 'number' &&
+          typeof (coordinates as Record<string, unknown>).lng === 'number') {
+        
+        const validCoords = coordinates as Coordinates;
+        
+        // 클릭된 위치 근처의 마커 찾기
+        const nearbyMarker = markers.find(marker => 
+          calculateDistance(validCoords, marker.position) < 100 // 100m 이내
+        );
+        
+        if (nearbyMarker && onMarkerClick) {
+          onMarkerClick(nearbyMarker);
+        }
+      }
+    } catch (error) {
+      console.error('Error handling marker click:', error);
     }
   };
 

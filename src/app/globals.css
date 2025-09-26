@@ -2,13 +2,67 @@
 @import "tailwindcss";
 
 :root {
+  /* 기존 Next.js 변수 */
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Marine Leisure 4-Color Palette */
+  --color-primary-light: #F3F3E0;
+  --color-primary-dark: #133E87;
+  --color-primary-medium: #608BC1;
+  --color-primary-accent: #CBDCEB;
+  
+  /* Semantic Colors */
+  --color-safe: #10B981;
+  --color-caution: #F59E0B;
+  --color-danger: #EF4444;
+  --color-fishing: #8B5CF6;
+  --color-navigation: #3B82F6;
+  --color-leisure: #10B981;
+  --color-restricted: #EF4444;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  
+  /* Text Colors */
+  --color-text-primary: #133E87;
+  --color-text-secondary: #608BC1;
+  --color-text-muted: #6B7280;
+  --color-text-light: #F3F3E0;
+  --color-text-white: #FFFFFF;
+  
+  /* Background Colors */
+  --color-bg-primary: #F3F3E0;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-overlay: rgba(19, 62, 135, 0.5);
+  --color-bg-glass: rgba(255, 255, 255, 0.1);
+  
+  /* Border Colors */
+  --color-border-light: #CBDCEB;
+  --color-border-medium: #608BC1;
+  --color-border-dark: #133E87;
+  --color-border-subtle: rgba(203, 220, 235, 0.3);
 }
 
-@theme inline {
+@theme {
+  /* Color Palette */
+  --color-primary-light: #F3F3E0;
+  --color-primary-dark: #133E87;
+  --color-primary-medium: #608BC1;
+  --color-primary-accent: #CBDCEB;
+  
+  /* Semantic Colors */
+  --color-safe: #10B981;
+  --color-caution: #F59E0B;
+  --color-danger: #EF4444;
+  --color-info: #3B82F6;
+  
+  /* Background */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

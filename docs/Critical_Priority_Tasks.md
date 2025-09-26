@@ -2,39 +2,39 @@
 
 ## 🚨 Critical Priority Tasks (즉시 실행)
 
-### Task 1: 코드 중복 제거
-- [ ] 1.1 MapView 컴포넌트 통합
-  - [ ] `MapView.tsx` 를 메인 버전으로 선택
-  - [ ] `MapView-new.tsx`, `MapView-old.tsx` 삭제
-  - [ ] 의존성 참조 업데이트
-- [ ] 1.2 DynamicMapView 통합
-  - [ ] 최적화된 단일 버전 생성
-  - [ ] 모든 백업 버전 삭제
-- [ ] 1.3 홈페이지 컴포넌트 정리
-  - [ ] `page.tsx`를 메인으로 유지
-  - [ ] `page-*.tsx` 백업 파일들 삭제
-- [ ] 1.4 공통 유틸리티 함수 추출
-  - [ ] `calculateDistance` 함수 통합 (`src/lib/utils/mapUtils.ts`)
-  - [ ] 모든 중복 구현체를 공통 함수로 교체
+### Task 1: 코드 중복 제거 ✅ (완료: 2025-09-26)
+- [x] 1.1 MapView 컴포넌트 통합
+  - [x] `MapView.tsx` 를 메인 버전으로 선택
+  - [x] `MapView-new.tsx`, `MapView-old.tsx` 삭제
+  - [x] 의존성 참조 업데이트
+- [x] 1.2 DynamicMapView 통합
+  - [x] 최적화된 단일 버전 생성
+  - [x] 모든 백업 버전 삭제
+- [x] 1.3 홈페이지 컴포넌트 정리
+  - [x] `page.tsx`를 메인으로 유지
+  - [x] `page-*.tsx` 백업 파일들 삭제
+- [x] 1.4 공통 유틸리티 함수 추출
+  - [x] `calculateDistance` 함수 통합 (`src/lib/utils/mapUtils.ts`)
+  - [x] 모든 중복 구현체를 공통 함수로 교체
 
-### Task 2: SSR/Leaflet 문제 해결
-- [ ] 2.1 Leaflet 초기화 로직 개선
-  - [ ] `src/lib/utils/leafletUtils.ts` 생성
-  - [ ] 브라우저 환경 체크 로직 강화
-- [ ] 2.2 MapView 컴포넌트 SSR 대응
-  - [ ] 클라이언트 사이드 렌더링 보장
-  - [ ] 로딩 상태 개선
-- [ ] 2.3 에러 핸들링 강화
-  - [ ] MapErrorBoundary 개선
-  - [ ] 폴백 컴포넌트 사용자 경험 향상
+### Task 2: SSR/Leaflet 문제 해결 ✅ (2025-01-27 완료)
+- [x] 2.1 Leaflet 초기화 로직 개선 (✅ 2025-01-27: leafletUtils.ts 생성, SSR 안전성 확보)
+  - [x] `src/lib/utils/leafletUtils.ts` 생성
+  - [x] 브라우저 환경 체크 로직 강화
+- [x] 2.2 MapView 컴포넌트 SSR 대응 (✅ 2025-01-27: leafletUtils 통합, 비동기 아이콘 생성)
+  - [x] 클라이언트 사이드 렌더링 보장
+  - [x] 로딩 상태 개선
+- [x] 2.3 에러 핸들링 강화 (✅ 2025-01-27: 재시도 로직, 개발자 디버깅 정보, UX 개선)
+  - [x] MapErrorBoundary 개선
+  - [x] 폴백 컴포넌트 사용자 경험 향상
 
 ## 🔥 High Priority Tasks (2주 내 완료)
 
 ### Task 3: 디자인 시스템 구축
-- [ ] 3.1 색상 팔레트 중앙화
-  - [ ] `src/lib/design/colors.ts` 생성
-  - [ ] CSS 변수 또는 Tailwind 커스텀 색상 정의
-  - [ ] 모든 하드코딩 색상값 교체
+- [x] 3.1 색상 팔레트 중앙화 (✅ 2025-01-27: colors.ts 생성, CSS 변수 정의, Button 컴포넌트 적용)
+  - [x] `src/lib/design/colors.ts` 생성
+  - [x] CSS 변수 또는 Tailwind 커스텀 색상 정의
+  - [ ] 모든 하드코딩 색상값 교체 (진행 중: Button 완료)
 - [ ] 3.2 테마 시스템 도입
   - [ ] ThemeProvider 컴포넌트 생성
   - [ ] 다크/라이트 모드 지원 준비

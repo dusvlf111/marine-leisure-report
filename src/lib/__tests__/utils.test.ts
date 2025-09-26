@@ -50,8 +50,8 @@ describe('유틸리티 함수 테스트', () => {
     })
 
     it('undefined나 null에 대해 적절히 처리한다', () => {
-      expect(() => formatDate(undefined as any)).toThrow()
-      expect(() => formatDate(null as any)).toThrow()
+      expect(() => formatDate(undefined as unknown as Date)).toThrow()
+      expect(() => formatDate(null as unknown as Date)).toThrow()
     })
   })
 
@@ -78,7 +78,7 @@ describe('유틸리티 함수 테스트', () => {
 
     it('빈 문자열이나 null을 처리한다', () => {
       expect(() => formatPhoneNumber('')).toThrow()
-      expect(() => formatPhoneNumber(null as any)).toThrow()
+      expect(() => formatPhoneNumber(null as unknown as string)).toThrow()
     })
   })
 
@@ -106,15 +106,16 @@ describe('유틸리티 함수 테스트', () => {
     })
 
     it('undefined나 null 좌표에 대해 false를 반환한다', () => {
-      expect(validateCoordinates(undefined as any)).toBe(false)
-      expect(validateCoordinates(null as any)).toBe(false)
-      expect(validateCoordinates({ lat: undefined as any, lng: 129.1600 })).toBe(false)
-      expect(validateCoordinates({ lat: 35.1596, lng: undefined as any })).toBe(false)
+      
+      expect(validateCoordinates(undefined)).toBe(false)
+      expect(validateCoordinates(null)).toBe(false)
+      expect(validateCoordinates({ lat: undefined, lng: 129.1600 } as unknown)).toBe(false)
+      expect(validateCoordinates({ lat: 35.1596, lng: undefined } as unknown)).toBe(false)
     })
 
     it('문자열 좌표에 대해 false를 반환한다', () => {
-      expect(validateCoordinates({ lat: '35.1596' as any, lng: 129.1600 })).toBe(false)
-      expect(validateCoordinates({ lat: 35.1596, lng: '129.1600' as any })).toBe(false)
+      expect(validateCoordinates({ lat: '35.1596', lng: 129.1600 } as unknown)).toBe(false)
+      expect(validateCoordinates({ lat: 35.1596, lng: '129.1600' } as unknown)).toBe(false)
     })
   })
 })
