@@ -160,7 +160,7 @@ const MapView: React.FC<MapViewProps> = ({
   };
 
   return (
-    <div className={`map-container ${className}`} style={style}>
+    <div className={`map-container ${className}`} style={{ height: '300px', ...style }}>
       <MapContainer
         center={[center.lat, center.lng]}
         zoom={level}

@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import { cn } from '@/lib/utils';
+import { colors } from '@/lib/design/colors';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -12,7 +13,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-sm font-medium mb-1" style={{ color: '#133E87' }}>
+          <label className="block text-sm font-medium mb-1" style={{ color: colors.primary.dark }}>
             {label}
           </label>
         )}
@@ -31,19 +32,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className
           )}
           style={{
-            backgroundColor: '#CBDCEB60',
-            borderColor: error ? '#ef4444' : '#608BC1',
-            color: '#133E87'
+            backgroundColor: colors.primary.accent + '60',
+            borderColor: error ? colors.semantic.error : colors.primary.medium,
+            color: colors.primary.dark
           }}
           {...props}
         />
         {error && (
-          <p className="mt-1 text-sm form-error" style={{ color: '#ef4444' }}>
+          <p className="mt-1 text-sm form-error" style={{ color: colors.semantic.error }}>
             {error}
           </p>
         )}
         {helperText && !error && (
-          <p className="mt-1 text-sm" style={{ color: '#608BC1' }}>
+          <p className="mt-1 text-sm" style={{ color: colors.primary.medium }}>
             {helperText}
           </p>
         )}

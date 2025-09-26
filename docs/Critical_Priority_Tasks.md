@@ -30,17 +30,18 @@
 
 ## 🔥 High Priority Tasks (2주 내 완료)
 
-### Task 3: 디자인 시스템 구축
-- [x] 3.1 색상 팔레트 중앙화 (✅ 2025-01-27: colors.ts 생성, CSS 변수 정의, Button 컴포넌트 적용)
+### Task 3: 디자인 시스템 구축 ✅ (완료: 2025-09-26)
+- [x] 3.1 색상 팔레트 중앙화 (✅ 2025-09-26: 모든 컴포넌트에서 하드코딩 색상값 제거)
   - [x] `src/lib/design/colors.ts` 생성
   - [x] CSS 변수 또는 Tailwind 커스텀 색상 정의
-  - [ ] 모든 하드코딩 색상값 교체 (진행 중: Button 완료)
-- [ ] 3.2 테마 시스템 도입
-  - [ ] ThemeProvider 컴포넌트 생성
-  - [ ] 다크/라이트 모드 지원 준비
-- [ ] 3.3 컴포넌트 스타일 표준화
-  - [ ] Button, Card, Input 컴포넌트 리팩토링
-  - [ ] 일관된 스타일 적용
+  - [x] 모든 하드코딩 색상값 교체 (Input, Select, Card, Header, Footer 완료)
+- [x] 3.2 테마 시스템 도입 (✅ 2025-09-26: ThemeProvider, ThemeToggle 컴포넌트 생성)
+  - [x] ThemeProvider 컴포넌트 생성
+  - [x] 다크/라이트 모드 지원 준비
+  - [x] 테마 토글 버튼 구현 및 Header 통합
+- [x] 3.3 컴포넌트 스타일 표준화 (✅ 2025-09-26: 모든 UI 컴포넌트 일관된 색상 시스템 적용)
+  - [x] Button, Card, Input, Select 컴포넌트 리팩토링
+  - [x] 일관된 스타일 적용
 
 ### Task 4: 테스트 환경 구축
 - [ ] 4.1 기본 테스트 설정

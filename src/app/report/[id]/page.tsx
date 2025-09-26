@@ -1,21 +1,45 @@
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { PageContainer, ContentArea } from '@/components/layout/Container';
 import { SafetyAnalysis } from '@/components/safety/SafetyAnalysis';
-import { WeatherInfo } from '@/components/safety/WeatherInfo';
 import { FisheryInfo } from '@/components/safety/FisheryInfo';
 import { NavigationInfo } from '@/components/safety/NavigationInfo';
 import { EmergencyContacts } from '@/components/safety/EmergencyContacts';
-import { SafetyZones } from '@/components/map/SafetyZones';
+import { LazyWeatherInfo, LazySafetyAnalysis, LazyMapView } from '@/components/lazy/LazyComponents';
 import { Button } from '@/components/ui/Button';
 import { mockReports } from '@/lib/data/mockData';
+import { MarineLogo } from '@/components/ui/OptimizedImage';
+import { generateReportMetadata } from '@/lib/seo/metadata';
+import { generateReportStructuredData, createJsonLd } from '@/lib/seo/structuredData';
 import Link from 'next/link';
 
 interface ReportPageProps {
   params: Promise<{
     id: string;
   }>;
+}
+
+// 동적 메타데이터 생성
+export async function generateMetadata({ params }: ReportPageProps): Promise<Metadata> {
+  const { id } = await params;
+  
+  // 실제로는 API에서 데이터를 가져와야 함
+  const report = mockReports[0];
+  
+  if (!report) {
+    return {
+      title: '신고서를 찾을 수 없습니다',
+      description: '요청하신 해양레저 안전신고서를 찾을 수 없습니다.',
+    };
+  }
+
+  return generateReportMetadata(
+    report.reportId,
+    report.status,
+    report.location.name
+  );
 }
 
 export default async function ReportPage({ params }: ReportPageProps) {
@@ -30,15 +54,36 @@ export default async function ReportPage({ params }: ReportPageProps) {
     notFound();
   }
 
+  // 구조화 데이터 생성
+  const reportStructuredData = generateReportStructuredData({
+    id: report.reportId,
+    location: report.location.name,
+    activityType: typeof report.activity === 'string' ? report.activity : report.activity?.type || '해양레저',
+    status: report.status,
+    submittedAt: report.submittedAt,
+    participantCount: 1, // 기본값
+  });
+
   return (
+    <>
+      {/* 구조화 데이터 추가 */}
+      <script 
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: createJsonLd(reportStructuredData) }}
+      />
+      
+      
     <PageContainer>
       <Header />
       
       <ContentArea>
         {/* 페이지 헤더 */}
         <div className="text-center mb-8 animate__animated animate__fadeInDown">
+          <div className="flex justify-center mb-4">
+            <MarineLogo size="large" />
+          </div>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            🌊 안전도 분석 결과
+            안전도 분석 결과
           </h1>
           <p className="text-lg text-gray-600 mb-2">
             신고번호: <span className="font-mono font-semibold">{report.reportId}</span>
@@ -79,13 +124,13 @@ export default async function ReportPage({ params }: ReportPageProps) {
           {/* 메인 콘텐츠 영역 */}
           <div className="lg:col-span-2 space-y-8">
             {/* 안전도 분석 */}
-            <SafetyAnalysis 
+            <LazySafetyAnalysis 
               status={report.status}
               analysis={report.analysis}
             />
 
             {/* 기상 정보 */}
-            <WeatherInfo weather={report.weather} />
+            <LazyWeatherInfo weather={report.weather} />
 
             {/* 어업권 정보 */}
             <FisheryInfo location={report.location} />
@@ -121,12 +166,9 @@ export default async function ReportPage({ params }: ReportPageProps) {
                 <span className="mr-2">🗺️</span>
                 주변 안전구역
               </h2>
-              <SafetyZones
-                center={report.location.coordinates}
-                safetyZones={report.safetyZones}
-                level={5}
-                style={{ width: '100%', height: '400px' }}
-              />
+              <div className="h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+                <p className="text-gray-600">안전구역 지도 (개발 중)</p>
+              </div>
             </div>
 
             {/* 활동 정보 요약 */}
@@ -233,5 +275,6 @@ export default async function ReportPage({ params }: ReportPageProps) {
       
       <Footer />
     </PageContainer>
+    </>
   );
 }

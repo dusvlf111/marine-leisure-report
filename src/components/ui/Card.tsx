@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { colors } from '@/lib/design/colors';
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -36,7 +37,7 @@ export const Card: React.FC<CardProps> = ({
         paddingClasses[padding],
         className
       )}
-      style={{ backgroundColor: '#CBDCEB40', borderColor: '#608BC1', ...props.style }}
+      style={{ backgroundColor: colors.primary.accent + '40', borderColor: colors.primary.medium, ...props.style }}
       {...props}
     >
       {children}

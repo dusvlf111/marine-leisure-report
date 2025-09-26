@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from 'react';
 import { Select } from '@/components/ui/Select';
 import { Button } from '@/components/ui/Button';
-import DynamicMapView from '@/components/map/DynamicMapView';
+import { LazyMapView } from '@/components/lazy/LazyComponents';
 import { mockLocations } from '@/lib/data/mockData';
 import { Location, Coordinates } from '@/types/global';
 import { findNearestLocation, normalizeCoordinates } from '@/lib/utils/mapUtils';
@@ -82,7 +82,7 @@ export const LocationSelector = forwardRef<HTMLSelectElement, LocationSelectorPr
 
         {showMap && (
           <div className="mt-4 animate__animated animate__slideDown">
-            <DynamicMapView
+            <LazyMapView
               center={value?.coordinates || { lat: 35.1595, lng: 129.1604 }}
               style={{ width: '100%', height: '300px' }}
               onMapClick={handleMapClick}

@@ -1,0 +1,43 @@
+# robots.txt - 해양레저 안전신고 시스템
+
+User-agent: *
+Allow: /
+
+# 검색 엔진 최적화를 위한 허용 경로
+Allow: /api/
+Allow: /images/
+Allow: /_next/static/
+
+# 차단할 경로 (개발 관련)
+Disallow: /_next/
+Disallow: /api/admin/
+Disallow: *.json$
+
+# 크롤링 속도 제한 (1초 간격)
+Crawl-delay: 1
+
+# 사이트맵 위치
+Sitemap: https://marine-leisure-report.vercel.app/sitemap.xml
+
+# 주요 검색엔진별 설정
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: NaverBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: DaumBot
+Allow: /
+Crawl-delay: 1
+
+# SEO 최적화를 위한 추가 허용
+User-agent: *
+Allow: /report/
+Allow: /about/
+Allow: /help/

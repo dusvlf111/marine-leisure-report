@@ -14,6 +14,7 @@ import { ActivitySelector } from './ActivitySelector';
 import { ContactForm } from './ContactForm';
 import { Location, ActivityType } from '@/types/global';
 import { ReportService } from '@/lib/services/reportService';
+import { SafetyStatusIcon } from '@/components/ui/OptimizedImage';
 
 export const ReportForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -98,17 +99,19 @@ export const ReportForm: React.FC = () => {
 
   if (submitSuccess) {
     return (
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6">
         <Card className="success-message">
-          <CardContent className="text-center py-8">
-            <div className="text-6xl mb-4">✅</div>
-            <h2 className="text-2xl font-bold text-green-800 mb-2">
+          <CardContent className="text-center py-6 sm:py-8 px-4 sm:px-6">
+            <div className="mb-4 flex justify-center">
+              <SafetyStatusIcon status="APPROVED" size={64} className="sm:scale-110" />
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-green-800 mb-2">
               신고가 성공적으로 접수되었습니다!
             </h2>
-            <p className="text-green-700 mb-4">
+            <p className="text-sm sm:text-base text-green-700 mb-4">
               안전 분석 결과를 확인하실 수 있습니다.
             </p>
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600 mx-auto"></div>
+            <div className="animate-spin rounded-full h-6 w-6 sm:h-8 sm:w-8 border-b-2 border-green-600 mx-auto"></div>
           </CardContent>
         </Card>
       </div>
@@ -116,14 +119,14 @@ export const ReportForm: React.FC = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
       {/* 헤더 */}
       <Card className="animate__animated animate__fadeInDown hover-lift">
-        <CardHeader className="text-center">
-          <CardTitle level={1} style={{ color: '#133E87' }}>
+        <CardHeader className="text-center px-4 sm:px-6">
+          <CardTitle level={1} style={{ color: '#133E87' }} className="text-2xl sm:text-3xl lg:text-4xl">
             🌊 해양레저스포츠 자율신고
           </CardTitle>
-          <p className="mt-2" style={{ color: '#608BC1' }}>
+          <p className="mt-2 text-sm sm:text-base" style={{ color: '#608BC1' }}>
             안전한 해양활동을 위해 사전 신고를 통해 맞춤형 안전 정보를 받으세요
           </p>
         </CardHeader>

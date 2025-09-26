@@ -216,3 +216,43 @@ body {
   animation-name: bounceIn;
   animation-duration: 0.8s;
 }
+
+/* Leaflet 맵 컨테이너 스타일 */
+.map-container {
+  position: relative;
+  min-height: 300px;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Leaflet 맵 컨테이너 내부 스타일 */
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  z-index: 1;
+}
+
+/* Leaflet 팝업 스타일 커스터마이징 */
+.leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* 마커 클러스터 스타일 */
+.marker-cluster {
+  background-color: rgba(96, 139, 193, 0.8);
+  border-radius: 50%;
+}
+
+.marker-cluster div {
+  background-color: rgba(96, 139, 193, 0.9);
+  border-radius: 50%;
+}
