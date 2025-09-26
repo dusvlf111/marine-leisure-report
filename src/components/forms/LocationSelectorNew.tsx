@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import DynamicMapView from '@/components/map/DynamicMapView';
 import { mockLocations } from '@/lib/data/mockData';
 import { Location, Coordinates } from '@/types/global';
+import { findNearestLocation } from '@/lib/utils/mapUtils';
 
 interface LocationSelectorProps {
   value?: Location | null;
@@ -27,8 +28,8 @@ export const LocationSelector = forwardRef<HTMLSelectElement, LocationSelectorPr
     };
 
     const handleMapClick = (coordinates: Coordinates) => {
-      // 클릭된 좌표와 가장 가까운 위치 찾기
-      const nearestLocation = findNearestLocation(coordinates);
+      // 클릭된 좌표와 가장 가까운 위치 찾기 (10km 이내)
+      const nearestLocation = findNearestLocation(coordinates, mockLocations, 10000);
       if (nearestLocation) {
         onChange(nearestLocation);
         setShowMap(false);
@@ -110,34 +111,4 @@ export const LocationSelector = forwardRef<HTMLSelectElement, LocationSelectorPr
 
 LocationSelector.displayName = 'LocationSelector';
 
-// 가장 가까운 위치 찾기 함수
-function findNearestLocation(coordinates: Coordinates): Location | null {
-  if (mockLocations.length === 0) return null;
-  
-  let nearestLocation = mockLocations[0];
-  let minDistance = calculateDistance(coordinates, nearestLocation.coordinates);
-  
-  for (let i = 1; i < mockLocations.length; i++) {
-    const distance = calculateDistance(coordinates, mockLocations[i].coordinates);
-    if (distance < minDistance) {
-      minDistance = distance;
-      nearestLocation = mockLocations[i];
-    }
-  }
-  
-  // 10km 이내인 경우만 반환
-  return minDistance <= 10000 ? nearestLocation : null;
-}
 
-// 거리 계산 함수 (미터)
-function calculateDistance(coord1: Coordinates, coord2: Coordinates): number {
-  const R = 6371000; // 지구 반지름 (미터)
-  const dLat = (coord2.lat - coord1.lat) * Math.PI / 180;
-  const dLng = (coord2.lng - coord1.lng) * Math.PI / 180;
-  const a = 
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(coord1.lat * Math.PI / 180) * Math.cos(coord2.lat * Math.PI / 180) * 
-    Math.sin(dLng/2) * Math.sin(dLng/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return R * c;
-}

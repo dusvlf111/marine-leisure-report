@@ -11,14 +11,11 @@ export function configureLeafletIcons() {
       import('leaflet/dist/images/marker-icon.png'),
       import('leaflet/dist/images/marker-shadow.png')
     ]).then(([iconRetinaUrl, iconUrl, shadowUrl]) => {
-      if (L.default.Icon.Default.prototype._getIconUrl) {
-        delete (L.default.Icon.Default.prototype as any)._getIconUrl;
-        L.default.Icon.Default.mergeOptions({
-          iconRetinaUrl: iconRetinaUrl.default.src,
-          iconUrl: iconUrl.default.src,
-          shadowUrl: shadowUrl.default.src,
-        });
-      }
+      L.default.Icon.Default.mergeOptions({
+        iconRetinaUrl: iconRetinaUrl.default.src,
+        iconUrl: iconUrl.default.src,
+        shadowUrl: shadowUrl.default.src,
+      });
     });
   });
 }

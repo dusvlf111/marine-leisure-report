@@ -4,6 +4,7 @@ import { generateReportId } from '@/lib/utils';
 import { mockLocations, mockSafetyZones } from '@/lib/data/mockData';
 import type { ReportResponse } from '@/types/api';
 import type { SafetyStatus, SafetyAnalysisData, WeatherData, SafetyZone, ActivityType } from '@/types/global';
+import { calculateDistance } from '@/lib/utils/mapUtils';
 
 export async function POST(request: NextRequest) {
   try {
@@ -124,7 +125,7 @@ async function performSafetyAnalysis(data: any) {
     calculateDistance(
       zone.coordinates[0], 
       data.location.coordinates
-    ) < 10 // 10km 이내
+    ) < 10000 // 10km 이내 (미터 단위)
   );
 
   return {
@@ -262,15 +263,4 @@ function generateRecommendations(
   return recommendations;
 }
 
-// 두 좌표 간 거리 계산 (km)
-function calculateDistance(coord1: { lat: number; lng: number }, coord2: { lat: number; lng: number }): number {
-  const R = 6371; // 지구 반지름 (km)
-  const dLat = (coord2.lat - coord1.lat) * Math.PI / 180;
-  const dLng = (coord2.lng - coord1.lng) * Math.PI / 180;
-  const a = 
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(coord1.lat * Math.PI / 180) * Math.cos(coord2.lat * Math.PI / 180) * 
-    Math.sin(dLng/2) * Math.sin(dLng/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return R * c;
-}
+

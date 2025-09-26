@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MapView } from './MapView';
+import  MapView  from './MapView';
 import type { SafetyZone, Coordinates } from '@/types/global';
 
 interface SafetyZonesProps {

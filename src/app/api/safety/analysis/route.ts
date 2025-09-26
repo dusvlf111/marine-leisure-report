@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { mockLocations, mockSafetyZones } from '@/lib/data/mockData';
 import type { SafetyStatus, SafetyAnalysisData, WeatherData } from '@/types/global';
+import { calculateDistance } from '@/lib/utils/mapUtils';
 
 // 안전도 분석 요청 스키마
 const safetyAnalysisSchema = z.object({
@@ -37,7 +38,7 @@ export async function POST(request: NextRequest) {
     
     // 주변 안전구역 정보
     const nearbyZones = mockSafetyZones.filter(zone => 
-      calculateDistance(zone.coordinates[0], location.coordinates) < 15
+      calculateDistance(zone.coordinates[0], location.coordinates) < 15000 // 15km 이내 (미터 단위)
     );
 
     const response = {
@@ -171,18 +172,4 @@ function generateQuickRecommendations(status: SafetyStatus, weather: WeatherData
   return recommendations;
 }
 
-// 거리 계산 함수
-function calculateDistance(
-  coord1: { lat: number; lng: number }, 
-  coord2: { lat: number; lng: number }
-): number {
-  const R = 6371;
-  const dLat = (coord2.lat - coord1.lat) * Math.PI / 180;
-  const dLng = (coord2.lng - coord1.lng) * Math.PI / 180;
-  const a = 
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(coord1.lat * Math.PI / 180) * Math.cos(coord2.lat * Math.PI / 180) * 
-    Math.sin(dLng/2) * Math.sin(dLng/2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  return R * c;
-}
+
