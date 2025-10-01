@@ -6,9 +6,11 @@ This is a Next.js-based marine leisure safety reporting system that uses AI to a
 
 ### Core Technology Stack
 - **Framework**: Next.js 14 with App Router (TypeScript)
-- **Forms**: React Hook Form + Zod validation schemas in `src/lib/data/schemas.ts`
-- **Maps**: React Leaflet (NOT Kakao Maps) with custom SSR handling
-- **Styling**: Tailwind CSS + Animate.css for smooth animati**상위 작업 완료 시**: Git Push + Discord 알림 전송
+- **Forms**: React Hook Form + Zod validation schemas
+- **Maps**: React Leaflet with SSR-safe dynamic imports
+- **Styling**: Tailwind CSS + Animate.css
+- **Testing**: Jest + Testing Library, Playwright E2E
+- **State Management**: React Query for API state
 
 ---
 
@@ -39,12 +41,21 @@ npm run test:e2e:ui    # Playwright with UI
 - **Leaflet Config**: `src/lib/utils/leafletConfig.ts` - Map SSR configuration
 
 ### Critical Development Rules
-1. **Always use dynamic imports for map components** to prevent SSR issues
-2. **Validate all API inputs with Zod schemas** before processing
-3. **Follow the component test pattern** with `__tests__` folders
-4. **Use TypeScript strictly** - no `any` types allowed
-5. **Animate.css classes must include `animate__animated`** prefix
-6. **All forms use React Hook Form + zodResolver pattern**
+
+#### 1. SSR Safety
+- Map components MUST use dynamic imports: `dynamic(() => import('./Map'), { ssr: false })`
+- Leaflet setup MUST be in `useEffect` or `configureLeafletIcons()`
+- Always include loading fallbacks for SSR components
+
+#### 2. Type Safety
+- Use TypeScript strict mode - no `any` types
+- All API interfaces defined in `src/types/api.ts`
+- Zod schemas required for all API inputs
+
+#### 3. Component Patterns
+- Test files in `__tests__` folders next to components
+- Forms use React Hook Form + zodResolver
+- Animations require `animate__animated` prefix
 
 ### AI Workflow Integration
 When working on tasks in `docs/Task.md`:
@@ -416,20 +427,16 @@ notify_task "1.1" "프로필 컴포넌트 생성"
 
 ---
 
-## Git 커밋 규칙
+## Git Workflow
 
-### 커밋 수행 시점
-1. **하위 작업 완료 시**: 즉시 커밋 + Discord 알림 (필수)
-2. **상위 작업 완료 시**: Git push + Discord 알림
+### Commit Rules
+1. Subtask completion: Immediate commit + Discord notification
+2. Parent task completion: Git push + Discord notification
 
-### 커밋 메시지 구조
+### Commit Format
 ```
-type(optional): [#issueNumber - ]Subject
-task[TaskNumber] - Task title
-
-body(optional)
-
-footer(optional)
+type: [#issue] Description
+task[number] - Task title
 ```
 
 ### Type 종류

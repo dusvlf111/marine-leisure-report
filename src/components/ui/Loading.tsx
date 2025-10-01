@@ -1,14 +1,17 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { HARDWARE_ACCELERATED, useReducedMotion } from '@/lib/animations/optimizations';
 
 interface LoadingProps {
   size?: 'sm' | 'md' | 'lg';
   variant?: 'spinner' | 'dots' | 'pulse';
   text?: string;
   className?: string;
+  prefersReducedMotion?: boolean;
 }
 
 export const Loading: React.FC<LoadingProps> = ({
+  prefersReducedMotion = false,
   size = 'md',
   variant = 'spinner',
   text,
@@ -24,9 +27,13 @@ export const Loading: React.FC<LoadingProps> = ({
     <div
       className={cn(
         'animate-spin rounded-full border-2 border-gray-300 border-t-blue-600',
+        HARDWARE_ACCELERATED.transform3d,
         sizeClasses[size],
         className
       )}
+      style={{
+        animationDuration: prefersReducedMotion ? '0.6s' : '0.3s'
+      }}
     />
   );
 
@@ -37,12 +44,14 @@ export const Loading: React.FC<LoadingProps> = ({
           key={index}
           className={cn(
             'animate-bounce rounded-full bg-blue-600',
+            HARDWARE_ACCELERATED.transform3d,
             size === 'sm' && 'w-1 h-1',
             size === 'md' && 'w-2 h-2',
             size === 'lg' && 'w-3 h-3'
           )}
           style={{
-            animationDelay: `${index * 0.1}s`,
+            animationDelay: `${index * (prefersReducedMotion ? 0.2 : 0.1)}s`,
+            animationDuration: prefersReducedMotion ? '0.8s' : '0.4s'
           }}
         />
       ))}
@@ -53,9 +62,13 @@ export const Loading: React.FC<LoadingProps> = ({
     <div
       className={cn(
         'animate-pulse rounded-full bg-blue-600',
+        HARDWARE_ACCELERATED.animated,
         sizeClasses[size],
         className
       )}
+      style={{
+        animationDuration: prefersReducedMotion ? '1.2s' : '0.6s'
+      }}
     />
   );
 
@@ -99,12 +112,31 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
   text = '로딩 중...',
   children,
 }) => {
+  const prefersReducedMotion = useReducedMotion();
+  
   return (
-    <div className="relative">
+    <div className={cn(
+      "relative",
+      HARDWARE_ACCELERATED.base
+    )}>
       {children}
       {isLoading && (
-        <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50">
-          <Loading variant="spinner" size="lg" text={text} />
+        <div 
+          className={cn(
+            "absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50",
+            "animate-fadeIn animate-gpu",
+            HARDWARE_ACCELERATED.animated
+          )}
+          style={{
+            animationDuration: prefersReducedMotion ? '0.4s' : '0.2s'
+          }}
+        >
+          <Loading 
+            variant="spinner" 
+            size="lg" 
+            text={text}
+            prefersReducedMotion={prefersReducedMotion} 
+          />
         </div>
       )}
     </div>
@@ -120,7 +152,11 @@ export const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
   className,
   variant = 'rectangular',
 }) => {
-  const baseClasses = 'animate-pulse bg-gray-300';
+  const prefersReducedMotion = useReducedMotion();
+  const baseClasses = cn(
+    'animate-pulse bg-gray-300',
+    HARDWARE_ACCELERATED.animated
+  );
   
   const variantClasses = {
     text: 'h-4 rounded',
@@ -135,6 +171,9 @@ export const LoadingSkeleton: React.FC<LoadingSkeletonProps> = ({
         variantClasses[variant],
         className
       )}
+      style={{
+        animationDuration: prefersReducedMotion ? '1.6s' : '0.8s'
+      }}
     />
   );
 };
