@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react'
 import { SafetyAnalysis } from '../SafetyAnalysis'
 import { SafetyAnalysisData } from '@/types/global'
@@ -101,5 +102,53 @@ describe('SafetyAnalysis 컴포넌트', () => {
     const scoreElements = screen.getAllByText(/100/)
     expect(scoreElements.length).toBeGreaterThan(0)
     expect(screen.getByText('활동 승인')).toBeInTheDocument()
+  })
+
+  it('애니메이션 클래스가 적용된다', () => {
+    const { container } = render(<SafetyAnalysis analysis={mockAnalysisData} status="APPROVED" />)
+    
+    // safety-approved 클래스 확인
+    const animatedElement = container.querySelector('.safety-approved')
+    expect(animatedElement).toBeTruthy()
+  })
+
+  it('상태별 적절한 아이콘이 표시된다', () => {
+    const { rerender } = render(<SafetyAnalysis analysis={mockAnalysisData} status="APPROVED" />)
+    
+    // APPROVED 상태 확인
+    expect(screen.getByText('활동 승인')).toBeInTheDocument()
+
+    // CAUTION 상태로 변경
+    const cautionData: SafetyAnalysisData = { ...mockAnalysisData, overallScore: 65 }
+    rerender(<SafetyAnalysis analysis={cautionData} status="CAUTION" />)
+    expect(screen.getByText('주의 필요')).toBeInTheDocument()
+
+    // DENIED 상태로 변경
+    const deniedData: SafetyAnalysisData = { ...mockAnalysisData, overallScore: 35 }
+    rerender(<SafetyAnalysis analysis={deniedData} status="DENIED" />)
+    expect(screen.getByText('활동 비권장')).toBeInTheDocument()
+  })
+
+  it('점수 진행 바가 표시된다', () => {
+    render(<SafetyAnalysis analysis={mockAnalysisData} status="APPROVED" />)
+    
+    // 점수 표시 확인
+    expect(screen.getByText('종합 안전도 점수')).toBeInTheDocument()
+  })
+
+  it('빈 분석 데이터도 안전하게 처리한다', () => {
+    const emptyData: SafetyAnalysisData = {
+      overallScore: 0,
+      weatherScore: 0,
+      locationScore: 0,
+      fishingRightScore: 0,
+      fisheryScore: 0,
+      navigationScore: 0
+    }
+
+    render(<SafetyAnalysis analysis={emptyData} status="DENIED" />)
+    
+    expect(screen.getByText('활동 비권장')).toBeInTheDocument()
+    expect(screen.getByText('0')).toBeInTheDocument()
   })
 })
