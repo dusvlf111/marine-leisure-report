@@ -90,7 +90,7 @@
 
 - [x] 8.0 테스트 코드 작성 및 품질 보증 (진행 중)
     - [x] 8.1 Jest 및 Testing Library 설정
-    - [ ] 8.2 ReportForm 컴포넌트 단위 테스트
+    - [x] 8.2 ReportForm 컴포넌트 단위 테스트
     - [ ] 8.3 SafetyAnalysis 컴포넌트 테스트
     - [ ] 8.4 API 라우트 통합 테스트
     - [x] 8.5 유틸리티 함수 테스트 (부분 완료)
