@@ -19,35 +19,35 @@ export default function Home() {
         
         <ContentArea>
           {/* 히어로 섹션 */}
-          <div className="text-center mb-12 animate__animated animate__fadeIn relative z-10">
-            <div className="backdrop-blur-md rounded-3xl p-8 mb-8 hover-lift shadow-lg border" style={{ backgroundColor: '#CBDCEB40', borderColor: '#608BC1' }}>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg" style={{ color: '#133E87' }}>
+          <div className="text-center mb-8 md:mb-12 animate__animated animate__fadeIn relative z-10">
+            <div className="backdrop-blur-md rounded-2xl md:rounded-3xl p-4 md:p-8 mb-6 md:mb-8 hover-lift shadow-lg border" style={{ backgroundColor: '#CBDCEB40', borderColor: '#608BC1' }}>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 drop-shadow-lg leading-tight" style={{ color: '#133E87' }}>
                 🌊 안전한 해양레저를 위한
-                <span className="block" style={{ color: '#608BC1' }}>
+                <span className="block mt-2" style={{ color: '#608BC1' }}>
                   AI 자율신고 시스템
                 </span>
               </h1>
               
-              <p className="text-xl mb-8 max-w-3xl mx-auto" style={{ color: '#608BC1' }}>
+              <p className="text-sm sm:text-base md:text-xl mb-6 md:mb-8 max-w-3xl mx-auto px-2" style={{ color: '#608BC1' }}>
                 해양레저스포츠 활동 전 사전 신고를 통해 실시간 안전도 분석, 
                 기상정보, 어업권 현황 등 맞춤형 안전 정보를 제공받으세요.
               </p>
               
-              <div className="flex flex-wrap justify-center gap-6 text-sm mb-8">
-                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#CBDCEB80', borderColor: '#133E87', color: '#133E87' }}>
-                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#133E87' }}></span>
+              <div className="flex flex-wrap justify-center gap-3 md:gap-6 text-xs md:text-sm mb-6 md:mb-8 px-2">
+                <div className="flex items-center space-x-1 md:space-x-2 rounded-full px-2 md:px-4 py-1 md:py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#CBDCEB80', borderColor: '#133E87', color: '#133E87' }}>
+                  <span className="w-2 h-2 md:w-3 md:h-3 rounded-full animate-pulse" style={{ backgroundColor: '#133E87' }}></span>
                   <span className="font-medium">실시간 AI 안전도 분석</span>
                 </div>
-                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#608BC180', borderColor: '#608BC1', color: '#F3F3E0' }}>
-                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#F3F3E0' }}></span>
+                <div className="flex items-center space-x-1 md:space-x-2 rounded-full px-2 md:px-4 py-1 md:py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#608BC180', borderColor: '#608BC1', color: '#F3F3E0' }}>
+                  <span className="w-2 h-2 md:w-3 md:h-3 rounded-full animate-pulse" style={{ backgroundColor: '#F3F3E0' }}></span>
                   <span className="font-medium">기상정보 연동</span>
                 </div>
-                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#CBDCEB80', borderColor: '#133E87', color: '#133E87' }}>
-                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#133E87' }}></span>
+                <div className="flex items-center space-x-1 md:space-x-2 rounded-full px-2 md:px-4 py-1 md:py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#CBDCEB80', borderColor: '#133E87', color: '#133E87' }}>
+                  <span className="w-2 h-2 md:w-3 md:h-3 rounded-full animate-pulse" style={{ backgroundColor: '#133E87' }}></span>
                   <span className="font-medium">어업권 정보 제공</span>
                 </div>
-                <div className="flex items-center space-x-2 rounded-full px-4 py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#608BC180', borderColor: '#608BC1', color: '#F3F3E0' }}>
-                  <span className="w-3 h-3 rounded-full animate-pulse" style={{ backgroundColor: '#F3F3E0' }}></span>
+                <div className="flex items-center space-x-1 md:space-x-2 rounded-full px-2 md:px-4 py-1 md:py-2 backdrop-blur-sm border shadow-md" style={{ backgroundColor: '#608BC180', borderColor: '#608BC1', color: '#F3F3E0' }}>
+                  <span className="w-2 h-2 md:w-3 md:h-3 rounded-full animate-pulse" style={{ backgroundColor: '#F3F3E0' }}></span>
                   <span className="font-medium">응급연락처 안내</span>
                 </div>
               </div>
@@ -55,14 +55,14 @@ export default function Home() {
           </div>
           
           {/* 메인 신고 폼 */}
-          <div className="mb-16 relative z-10">
-            <div className="backdrop-blur-md rounded-3xl p-8 hover-lift shadow-lg border" style={{ backgroundColor: '#CBDCEB30', borderColor: '#608BC1' }}>
+          <div className="mb-12 md:mb-16 relative z-10">
+            <div className="backdrop-blur-md rounded-2xl md:rounded-3xl p-4 md:p-8 hover-lift shadow-lg border" style={{ backgroundColor: '#CBDCEB30', borderColor: '#608BC1' }}>
               <ReportForm />
             </div>
           </div>
           
           {/* 주요 기능 소개 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-12 md:mb-16 relative z-10">
             <Card className="backdrop-blur-md hover-lift shadow-lg border" style={{ backgroundColor: '#CBDCEB40', borderColor: '#608BC1' }}>
               <CardContent className="p-6 text-center">
                 <div className="text-4xl mb-4">🤖</div>

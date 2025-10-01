@@ -15,7 +15,7 @@ export const Card: React.FC<CardProps> = ({
   className,
   ...props
 }) => {
-  const baseClasses = 'rounded-lg transition-all duration-300 backdrop-blur-md';
+  const baseClasses = 'rounded-lg md:rounded-xl transition-all duration-300 backdrop-blur-md';
   
   const variantClasses = {
     default: 'backdrop-blur-md border shadow-lg hover:shadow-xl',
@@ -24,9 +24,9 @@ export const Card: React.FC<CardProps> = ({
   };
   
   const paddingClasses = {
-    sm: 'p-3',
-    md: 'p-4',
-    lg: 'p-6',
+    sm: 'p-2 sm:p-3',
+    md: 'p-3 sm:p-4 md:p-6',
+    lg: 'p-4 sm:p-6 md:p-8',
   };
   
   return (
@@ -56,7 +56,7 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 }) => {
   return (
     <div
-      className={cn('mb-4 pb-2 border-b border-gray-100', className)}
+      className={cn('mb-2 sm:mb-3 md:mb-4 pb-2 border-b border-gray-100', className)}
       {...props}
     >
       {children}
@@ -76,12 +76,12 @@ export const CardTitle: React.FC<CardTitleProps> = ({
   ...props
 }) => {
   const levelClasses = {
-    1: 'text-3xl font-bold',
-    2: 'text-2xl font-bold',
-    3: 'text-xl font-semibold',
-    4: 'text-lg font-semibold',
-    5: 'text-base font-medium',
-    6: 'text-sm font-medium',
+    1: 'text-2xl sm:text-3xl md:text-4xl font-bold',
+    2: 'text-xl sm:text-2xl md:text-3xl font-bold',
+    3: 'text-lg sm:text-xl md:text-2xl font-semibold',
+    4: 'text-base sm:text-lg md:text-xl font-semibold',
+    5: 'text-sm sm:text-base md:text-lg font-medium',
+    6: 'text-xs sm:text-sm md:text-base font-medium',
   };
   
   const headingProps = {

@@ -119,14 +119,14 @@ export const ReportForm: React.FC = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
+    <div className="max-w-4xl mx-auto px-2 sm:px-4 lg:px-8 space-y-3 sm:space-y-4 md:space-y-6">
       {/* 헤더 */}
       <Card className="animate__animated animate__fadeInDown hover-lift">
-        <CardHeader className="text-center px-4 sm:px-6">
-          <CardTitle level={1} style={{ color: '#133E87' }} className="text-2xl sm:text-3xl lg:text-4xl">
+        <CardHeader className="text-center px-3 sm:px-4 md:px-6">
+          <CardTitle level={1} style={{ color: '#133E87' }} className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
             🌊 해양레저스포츠 자율신고
           </CardTitle>
-          <p className="mt-2 text-sm sm:text-base" style={{ color: '#608BC1' }}>
+          <p className="mt-2 text-xs sm:text-sm md:text-base leading-relaxed" style={{ color: '#608BC1' }}>
             안전한 해양활동을 위해 사전 신고를 통해 맞춤형 안전 정보를 받으세요
           </p>
         </CardHeader>
@@ -143,11 +143,11 @@ export const ReportForm: React.FC = () => {
       )}
 
       {/* 메인 폼 */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
         {/* 위치 선택 */}
         <Card className="animate__animated animate__slideInUp hover-lift">
-          <CardHeader>
-            <CardTitle level={3} style={{ color: '#133E87' }}>📍 활동 위치</CardTitle>
+          <CardHeader className="px-3 sm:px-4 md:px-6">
+            <CardTitle level={3} style={{ color: '#133E87' }} className="text-lg sm:text-xl">📍 활동 위치</CardTitle>
           </CardHeader>
           <CardContent>
             <LocationSelector
