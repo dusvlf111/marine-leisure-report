@@ -3,11 +3,14 @@ import { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { PageContainer, ContentArea } from '@/components/layout/Container';
-import { SafetyAnalysis } from '@/components/safety/SafetyAnalysis';
-import { FisheryInfo } from '@/components/safety/FisheryInfo';
-import { NavigationInfo } from '@/components/safety/NavigationInfo';
-import { EmergencyContacts } from '@/components/safety/EmergencyContacts';
-import { LazyWeatherInfo, LazySafetyAnalysis, LazyMapView } from '@/components/lazy/LazyComponents';
+import { 
+  LazyWeatherInfo, 
+  LazySafetyAnalysis, 
+  LazyMapView,
+  LazyFisheryInfo,
+  LazyNavigationInfo,
+  LazyEmergencyContacts
+} from '@/components/lazy/LazyComponents';
 import { Button } from '@/components/ui/Button';
 import { mockReports } from '@/lib/data/mockData';
 import { MarineLogo } from '@/components/ui/OptimizedImage';
@@ -133,10 +136,10 @@ export default async function ReportPage({ params }: ReportPageProps) {
             <LazyWeatherInfo weather={report.weather} />
 
             {/* 어업권 정보 */}
-            <FisheryInfo location={report.location} />
+            <LazyFisheryInfo location={report.location} />
 
             {/* 항로 정보 */}
-            <NavigationInfo location={report.location} />
+            <LazyNavigationInfo location={report.location} />
 
             {/* 추천사항 */}
             <div className="bg-white rounded-lg shadow-lg p-6 animate__animated animate__slideInUp animate-delay-500ms">
@@ -219,7 +222,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
           {/* 사이드바 */}
           <div className="space-y-6">
             {/* 응급 연락처 */}
-            <EmergencyContacts 
+            <LazyEmergencyContacts 
               contacts={report.emergencyContacts}
               location={report.location.coordinates}
             />

@@ -20,10 +20,15 @@
 - `src/components/forms/ReportForm.tsx` - 핵심 신고 입력 폼
 - `src/components/map/MapView.tsx` - OpenStreetMap (React Leaflet) 통합 컴포넌트
 - `src/components/safety/SafetyAnalysis.tsx` - 안전도 분석 결과 표시
+- `src/components/ui/OptimizedImage.tsx` - 이미지 최적화 컴포넌트 (Progressive Loading, Skeleton UI)
+- `src/components/ui/__tests__/OptimizedImage.test.tsx` - 이미지 최적화 종합 테스트 슈트
 - `src/lib/data/mockData.ts` - 목데이터 정의
 - `src/lib/data/schemas.ts` - Zod 스키마 정의
 - `src/app/api/report/submit/route.ts` - 신고 접수 API
 - `src/app/api/safety/analysis/route.ts` - 안전도 분석 API
+- `scripts/notify.ps1` - PowerShell Discord 알림 스크립트
+- `scripts/notify-functions.ps1` - PowerShell Discord 알림 함수들
+- `.env` - Discord Webhook URL 설정
 
 ## Tasks
 
@@ -99,7 +104,15 @@
 
 - [ ] 9.0 성능 최적화 및 반응형 디자인
     - [x] 9.1 모바일 반응형 레이아웃 최적화
-    - [ ] 9.2 이미지 최적화 (Next.js Image 컴포넌트)
+    - [x] 9.2 이미지 최적화 (Next.js Image 컴포넌트)
+        - [x] 9.2.1 OptimizedImage 컴포넌트 고도화
+        - [x] 9.2.2 Progressive Loading 구현
+        - [x] 9.2.3 Image Skeleton Loading UI
+        - [x] 9.2.4 반응형 sizes 속성 자동 계산
+        - [x] 9.2.5 품질 최적화 및 지연 로딩
+        - [x] 9.2.6 에러 처리 및 로딩 상태 관리
+        - [x] 9.2.7 종합 테스트 슈트 작성 (29개 테스트)
+        - [x] 9.2.8 Windows PowerShell Discord 알림 시스템
     - [ ] 9.3 코드 스플리팅 (동적 임포트)
     - [ ] 9.4 SEO 최적화 (메타데이터 설정)
     - [ ] 9.5 웹 접근성 기본 준수 (aria-label, 키보드 네비게이션)

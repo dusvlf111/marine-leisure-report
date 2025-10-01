@@ -1,7 +1,7 @@
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { PageContainer, ContentArea } from '@/components/layout/Container';
-import { ReportForm } from '@/components/forms/ReportForm';
+import { LazyReportForm } from '@/components/lazy/LazyComponents';
 import { Card, CardContent } from '@/components/ui/Card';
 
 export default function Home() {
@@ -57,7 +57,7 @@ export default function Home() {
           {/* 메인 신고 폼 */}
           <div className="mb-12 md:mb-16 relative z-10">
             <div className="backdrop-blur-md rounded-2xl md:rounded-3xl p-4 md:p-8 hover-lift shadow-lg border" style={{ backgroundColor: '#CBDCEB30', borderColor: '#608BC1' }}>
-              <ReportForm />
+              <LazyReportForm />
             </div>
           </div>
           
