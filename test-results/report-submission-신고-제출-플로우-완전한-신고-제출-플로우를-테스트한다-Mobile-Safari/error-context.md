@@ -1,0 +1,191 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e5]:
+    - banner [ref=e6]:
+      - generic [ref=e8]:
+        - link "해양레저 안전신고 로고 해양안전" [ref=e9]:
+          - /url: /
+          - img "해양레저 안전신고 로고" [ref=e11]
+          - generic [ref=e13]: 해양안전
+        - button [ref=e14]:
+          - img [ref=e15]
+    - main [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e19]:
+          - heading "🌊 안전한 해양레저를 위한 AI 자율신고 시스템" [level=1] [ref=e20]:
+            - text: 🌊 안전한 해양레저를 위한
+            - generic [ref=e21]: AI 자율신고 시스템
+          - paragraph [ref=e22]: 해양레저스포츠 활동 전 사전 신고를 통해 실시간 안전도 분석, 기상정보, 어업권 현황 등 맞춤형 안전 정보를 제공받으세요.
+          - generic [ref=e23]:
+            - generic [ref=e26]: 실시간 AI 안전도 분석
+            - generic [ref=e29]: 기상정보 연동
+            - generic [ref=e32]: 어업권 정보 제공
+            - generic [ref=e35]: 응급연락처 안내
+        - generic [ref=e38]:
+          - generic [ref=e40]:
+            - heading "🌊 해양레저스포츠 자율신고" [level=1] [ref=e41]
+            - paragraph [ref=e42]: 안전한 해양활동을 위해 사전 신고를 통해 맞춤형 안전 정보를 받으세요
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - heading "📍 활동 위치" [level=3] [ref=e46]
+              - generic [ref=e48]:
+                - generic [ref=e49]:
+                  - generic [ref=e50]: 활동 위치
+                  - combobox [ref=e51]:
+                    - option "활동할 위치를 선택하세요" [disabled] [selected]
+                    - option "부산 해운대해수욕장"
+                    - option "제주도 중문해수욕장"
+                    - option "강원도 속초항"
+                    - option "인천 을왕리해수욕장"
+                    - option "경남 통영 한산도"
+                  - paragraph [ref=e52]: 위치를 선택해주세요
+                - button "지도에서 선택" [ref=e54]
+            - generic [ref=e55]:
+              - heading "🏄‍♂️ 활동 종목" [level=3] [ref=e57]
+              - generic [ref=e59]:
+                - generic [ref=e60]:
+                  - generic [ref=e61]: 활동 종목
+                  - combobox [ref=e62]:
+                    - option "해양레저스포츠 종목을 선택하세요" [disabled]
+                    - option "패들보드 (SUP)" [selected]
+                    - option "프리다이빙"
+                    - option "카약"
+                    - option "윈드서핑"
+                    - option "수상스키"
+                    - option "요트"
+                  - paragraph [ref=e63]: 선택한 종목에 따라 맞춤형 안전 정보를 제공합니다
+                - generic [ref=e65]:
+                  - paragraph [ref=e66]: 패들보드 활동 정보
+                  - paragraph [ref=e67]: 서핑보드 위에서 패들을 이용해 이동하는 활동
+                  - generic [ref=e68]:
+                    - paragraph [ref=e69]: "⚠️ 안전 수칙:"
+                    - list [ref=e70]:
+                      - listitem [ref=e71]:
+                        - generic [ref=e72]: •
+                        - generic [ref=e73]: 구명조끼 착용 필수
+                      - listitem [ref=e74]:
+                        - generic [ref=e75]: •
+                        - generic [ref=e76]: 강풍 시 활동 금지
+                      - listitem [ref=e77]:
+                        - generic [ref=e78]: •
+                        - generic [ref=e79]: 동반자와 함께 활동 권장
+            - generic [ref=e80]:
+              - heading "⏱️ 활동 세부 정보" [level=3] [ref=e82]
+              - generic [ref=e84]:
+                - generic [ref=e85]:
+                  - generic [ref=e86]: 참가자 수
+                  - spinbutton [ref=e87]: "2"
+                  - paragraph [ref=e88]: 최대 50명까지
+                - generic [ref=e89]:
+                  - generic [ref=e90]: 활동 날짜
+                  - textbox [ref=e91]: 2025-10-01
+                - generic [ref=e92]:
+                  - generic [ref=e93]: 활동 시간 (시간)
+                  - spinbutton [ref=e94]: "3"
+                  - paragraph [ref=e95]: 최대 12시간
+            - generic [ref=e96]:
+              - heading "📞 연락처 정보" [level=3] [ref=e98]
+              - generic [ref=e100]:
+                - generic [ref=e101]:
+                  - heading "📞 비상연락처 정보" [level=3] [ref=e102]
+                  - paragraph [ref=e103]: 응급상황 발생 시 신속한 구조 작업을 위해 정확한 연락처를 입력해주세요. 입력하신 개인정보는 안전 목적으로만 사용되며 보안이 보장됩니다.
+                - generic [ref=e104]:
+                  - generic [ref=e105]:
+                    - generic [ref=e106]: 담당자 이름
+                    - textbox "이름을 입력하세요" [ref=e107]: 김해양
+                  - generic [ref=e108]:
+                    - generic [ref=e109]: 연락처
+                    - textbox "010-1234-5678" [ref=e110]
+                    - paragraph [ref=e111]: 휴대폰 번호 또는 유선 전화번호를 입력하세요
+                - generic [ref=e113]:
+                  - generic [ref=e114]: 🛡️
+                  - generic [ref=e115]:
+                    - paragraph [ref=e116]: 개인정보 보호 정책
+                    - paragraph [ref=e117]: 수집된 개인정보는 해양 안전 관리 목적으로만 사용되며, 관련 법령에 따라 안전하게 보관됩니다.
+            - generic [ref=e118]:
+              - button "🚀 자율신고 접수하기" [ref=e119]
+              - paragraph [ref=e120]: 신고 접수 후 즉시 AI 기반 안전도 분석 결과를 확인할 수 있습니다.
+        - generic [ref=e121]:
+          - generic [ref=e123]:
+            - generic [ref=e124]: 🤖
+            - heading "AI 안전도 분석" [level=3] [ref=e125]
+            - paragraph [ref=e126]: 머신러닝 기반으로 기상, 위치, 어업권 정보를 종합 분석하여 활동 안전도를 실시간으로 평가합니다.
+          - generic [ref=e128]:
+            - generic [ref=e129]: 🌊
+            - heading "실시간 기상정보" [level=3] [ref=e130]
+            - paragraph [ref=e131]: 기상청 연동으로 풍속, 파고, 가시거리 등 해양레저 활동에 필수적인 기상정보를 제공합니다.
+          - generic [ref=e133]:
+            - generic [ref=e134]: 🎣
+            - heading "어업권 현황" [level=3] [ref=e135]
+            - paragraph [ref=e136]: 해당 지역의 어업권 설정 현황과 제한사항을 사전에 확인하여 안전한 활동을 지원합니다.
+          - generic [ref=e138]:
+            - generic [ref=e139]: 📞
+            - heading "응급연락망" [level=3] [ref=e140]
+            - paragraph [ref=e141]: 지역별 해경서, 병원, 수협 등 응급상황 시 필요한 연락처를 즉시 제공합니다.
+        - generic [ref=e143]:
+          - heading "🚨 응급연락처" [level=2] [ref=e144]
+          - generic [ref=e145]:
+            - generic [ref=e146]:
+              - generic [ref=e147]: "122"
+              - generic [ref=e148]: 해양경찰서
+            - generic [ref=e149]:
+              - generic [ref=e150]: "119"
+              - generic [ref=e151]: 소방서 응급구조
+            - generic [ref=e152]:
+              - generic [ref=e153]: 1588-3650
+              - generic [ref=e154]: 해양수산부 콜센터
+            - generic [ref=e155]:
+              - generic [ref=e156]: 1833-9117
+              - generic [ref=e157]: 해양안전종합상황실
+    - contentinfo [ref=e158]:
+      - generic [ref=e159]:
+        - generic [ref=e160]:
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - img [ref=e163]
+              - generic [ref=e167]: 해양레저 안전신고
+            - paragraph [ref=e168]: AI 기반 해양레저스포츠 자율신고 시스템으로 안전하고 즐거운 해양활동을 지원합니다.
+            - paragraph [ref=e169]: © 2024 해양레저 안전신고 시스템. All rights reserved.
+          - generic [ref=e170]:
+            - heading "빠른 링크" [level=3] [ref=e171]
+            - list [ref=e172]:
+              - listitem [ref=e173]:
+                - link "신고하기" [ref=e174]:
+                  - /url: /
+              - listitem [ref=e175]:
+                - link "대시보드" [ref=e176]:
+                  - /url: /dashboard
+              - listitem [ref=e177]:
+                - link "안전수칙" [ref=e178]:
+                  - /url: /about
+              - listitem [ref=e179]:
+                - link "개인정보처리방침" [ref=e180]:
+                  - /url: /privacy
+          - generic [ref=e181]:
+            - heading "응급연락처" [level=3] [ref=e182]
+            - list [ref=e183]:
+              - listitem [ref=e184]:
+                - img [ref=e185]
+                - generic [ref=e187]: "해양경찰: 122"
+              - listitem [ref=e188]:
+                - img [ref=e189]
+                - generic [ref=e191]: "응급상황: 119"
+              - listitem [ref=e192]:
+                - img [ref=e193]
+                - generic [ref=e196]: support@marine-safety.kr
+              - listitem [ref=e197]:
+                - img [ref=e198]
+                - generic [ref=e201]: 전국 해안가 서비스
+        - generic [ref=e203]:
+          - paragraph [ref=e204]: 본 시스템은 해양수산부와 연계하여 운영됩니다.
+          - generic [ref=e205]:
+            - link "이용약관" [ref=e206]:
+              - /url: /terms
+            - link "개인정보처리방침" [ref=e207]:
+              - /url: /privacy
+  - button "Open Next.js Dev Tools" [ref=e213] [cursor=pointer]:
+    - img [ref=e214] [cursor=pointer]
+  - alert [ref=e219]
+```

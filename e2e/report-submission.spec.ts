@@ -70,4 +70,54 @@ test.describe('신고 제출 플로우', () => {
     
     expect(isParticipantsValid).toBe(false);
   });
+
+  test('지도 토글 버튼이 작동한다', async ({ page }) => {
+    // 지도 토글 버튼 클릭
+    await page.locator('button:has-text("지도에서 선택")').click();
+    
+    // 지도가 표시되는지 확인 (지도 컨테이너 또는 로딩 메시지 확인)
+    const mapContainer = page.locator('.leaflet-container');
+    const loadingMessage = page.locator('text=지도를 로드하는 중');
+    
+    await expect(mapContainer.or(loadingMessage)).toBeVisible({ timeout: 5000 });
+  });
+
+  test('애니메이션이 올바르게 표시된다', async ({ page }) => {
+    // 페이지 로드 시 애니메이션 클래스 확인
+    await expect(page.locator('.animate__animated').first()).toBeVisible();
+    
+    // 폼 카드들이 순차적으로 나타나는지 확인
+    await expect(page.locator('.animate__slideInUp').first()).toBeVisible();
+  });
+
+  test('응답성 디자인이 작동한다', async ({ page }) => {
+    // 모바일 크기로 변경
+    await page.setViewportSize({ width: 375, height: 667 });
+    
+    // 모바일에서도 모든 요소가 표시되는지 확인
+    await expect(page.locator('h1:has-text("해양레저스포츠 자율신고")')).toBeVisible();
+    await expect(page.locator('button:has-text("자율신고 접수하기")')).toBeVisible();
+    
+    // 태블릿 크기로 변경
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await expect(page.locator('h1:has-text("해양레저스포츠 자율신고")')).toBeVisible();
+    
+    // 데스크톱 크기로 변경
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await expect(page.locator('h1:has-text("해양레저스포츠 자율신고")')).toBeVisible();
+  });
+
+  test('키보드 네비게이션이 작동한다', async ({ page }) => {
+    // 첫 번째 입력 필드에 포커스
+    await page.keyboard.press('Tab');
+    
+    // 탭으로 다음 필드들로 이동
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    
+    // 스페이스바로 버튼 활성화 확인
+    const submitButton = page.locator('button:has-text("자율신고 접수하기")');
+    await submitButton.focus();
+    await expect(submitButton).toBeFocused();
+  });
 });

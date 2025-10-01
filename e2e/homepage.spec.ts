@@ -7,10 +7,10 @@ test.describe('홈페이지 기본 기능', () => {
 
   test('페이지가 올바르게 로드된다', async ({ page }) => {
     // 페이지 타이틀 확인
-    await expect(page).toHaveTitle(/해양레저스포츠 자율신고/);
-    
+    await expect(page).toHaveTitle(/해양레저 안전신고/);
+
     // 메인 헤더 확인
-    await expect(page.locator('h1').filter({ hasText: '🌊 해양레저스포츠 자율신고' })).toBeVisible();
+    await expect(page.locator('h1').filter({ hasText: '안전한 해양레저를 위한' })).toBeVisible();
   });
 
   test('신고 폼이 표시된다', async ({ page }) => {
